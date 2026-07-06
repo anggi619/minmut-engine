@@ -1,8 +1,8 @@
 console.log("CORE LOADED");
 
-document.addEventListener("DOMContentLoaded", function () {
+function start() {
 
-    console.log("DOM READY");
+    console.log("START");
 
     const div = document.createElement("div");
 
@@ -16,4 +16,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.body.appendChild(div);
 
-});
+}
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", start);
+} else {
+    start();
+}
