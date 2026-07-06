@@ -59,7 +59,46 @@ class MinmutAPI {
     }
 
 }
+blink() {
 
+    if (this.engine?.avatar) {
+
+        this.engine.avatar.blink();
+
+    }
+
+}
+
+happy() {
+
+    if (this.engine?.avatar) {
+
+        this.engine.avatar.happy();
+
+    }
+
+}
+
+thinking() {
+
+    if (this.engine?.avatar) {
+
+        this.engine.avatar.thinking();
+
+    }
+
+}
+
+wave() {
+
+    if (this.engine?.avatar) {
+
+        this.engine.avatar.wave();
+
+    }
+
+}
+    
 }
 
 window.Minmut = new MinmutAPI();
