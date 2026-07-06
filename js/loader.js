@@ -38,6 +38,8 @@
 
         await loadScript(base+"js/animation.js");
 
+        await loadScript(base + "js/voice.js");
+
     }
 
     start();
