@@ -50,4 +50,15 @@ class MinmutAPI {
 
 }
 
+speak(text){
+
+    this.say(text);
+
+    if(this.engine){
+
+        this.engine.voice.speak(text);
+
+    }
+
+}
 window.Minmut = new MinmutAPI();
