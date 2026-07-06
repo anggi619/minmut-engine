@@ -48,17 +48,17 @@ class MinmutAPI {
 
     }
 
-    speak(text) {
+    async speak(text){
 
-        this.say(text);
+    this.say(text);
 
-        if (this.engine && this.engine.voice) {
+    if(this.engine){
 
-            this.engine.voice.speak(text);
-
-        }
+        await this.engine.voice.speak(text);
 
     }
+
+}
 
 }
 
