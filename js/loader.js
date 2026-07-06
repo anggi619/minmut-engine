@@ -32,6 +32,8 @@
 
         await loadScript(base+"js/bubble.js");
 
+        await loadScript(base+"js/api.js");
+        
         await loadScript(base+"js/core.js");
 
         await loadScript(base+"js/animation.js");
