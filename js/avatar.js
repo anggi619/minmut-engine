@@ -37,9 +37,13 @@ class MinmutAvatar {
         this.play("thinking");
     }
 
-    wave(){
-        this.play("wave");
-    }
+    wave() {
+
+    console.log("Wave dipanggil");
+
+    alert("Wave berhasil");
+
+}
 
 }
 
