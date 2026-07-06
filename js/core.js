@@ -1,20 +1,49 @@
-console.log("MINMUT Core Loaded");
+class MinmutCore {
 
-document.addEventListener("DOMContentLoaded", () => {
+    constructor() {
 
-    const test = document.createElement("div");
+        this.version = "2.1.0";
 
-    test.innerHTML = "🐹 MINMUT Engine 2.1";
+        this.base =
+            "https://anggi619.github.io/minmut-engine/";
 
-    test.style.position = "fixed";
-    test.style.right = "20px";
-    test.style.bottom = "20px";
-    test.style.background = "#16a34a";
-    test.style.color = "#fff";
-    test.style.padding = "15px 20px";
-    test.style.borderRadius = "15px";
-    test.style.zIndex = "999999";
+    }
 
-    document.body.appendChild(test);
+    init() {
+
+        console.log(
+            "MINMUT Engine",
+            this.version
+        );
+
+        this.createMinmut();
+
+    }
+
+    createMinmut() {
+
+        if(document.getElementById("minmut")){
+            return;
+        }
+
+        const minmut = document.createElement("div");
+
+        minmut.id = "minmut";
+
+        minmut.innerHTML =
+            `<img src="${this.base}assets/minmut.png"
+                  alt="Minmut">`;
+
+        document.body.appendChild(minmut);
+
+    }
+
+}
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+    const engine = new MinmutCore();
+
+    engine.init();
 
 });
