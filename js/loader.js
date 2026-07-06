@@ -40,6 +40,8 @@
        
     await loadScript(base+"js/voice-manager.js");
 
+    await loadScript(base + "js/avatar.js");
+
     await loadScript(base+"js/core.js");
 
     await loadScript(base+"js/animation.js");
