@@ -4,7 +4,7 @@ class MinmutCore {
 
     this.base="https://anggi619.github.io/minmut-engine/";
 
-    this.voice=new MinmutVoice();
+    this.voice=new MinmutVoiceManager();
 
 }
 
