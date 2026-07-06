@@ -4,15 +4,19 @@ position:fixed;
 
 right:20px;
 
-bottom:20px;
+bottom:-220px;
 
-width:120px;
+width:150px;
 
 z-index:999999;
 
-cursor:pointer;
+transition:.8s;
 
-transition:.35s;
+}
+
+#minmut.show{
+
+bottom:20px;
 
 }
 
@@ -22,12 +26,8 @@ width:100%;
 
 display:block;
 
-filter:drop-shadow(0 8px 18px rgba(0,0,0,.25));
+cursor:pointer;
 
-}
-
-#minmut:hover{
-
-transform:scale(1.06);
+user-select:none;
 
 }
