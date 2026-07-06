@@ -11,7 +11,7 @@
         var script = document.createElement("script");
         script.src = url;
         script.defer = true;
-        document.body.appendChild(script);
+        (document.head || document.documentElement).appendChild(script);
     }
 
     var base = "https://anggi619.github.io/minmut-engine/";
