@@ -20,7 +20,9 @@ class MinmutCore {
         document.body.appendChild(div);
 
     }
+const bubble=new MinmutBubble();
 
+bubble.init();
 }
 
 function startEngine() {
