@@ -15,11 +15,7 @@ function start() {
     div.style.zIndex = "999999";
 
     document.body.appendChild(div);
-
 }
 
-if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", start);
-} else {
-    start();
-}
+// Jalankan langsung tanpa menunggu event apa pun
+start();
