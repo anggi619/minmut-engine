@@ -1,11 +1,13 @@
-window.addEventListener("load",()=>{
+window.addEventListener("load", () => {
 
-    const minmut=document.getElementById("minmut");
+    setTimeout(() => {
 
-    setTimeout(()=>{
+        const minmut = document.getElementById("minmut");
+
+        if (!minmut) return;
 
         minmut.classList.add("show");
 
-    },500);
+    }, 500);
 
 });
