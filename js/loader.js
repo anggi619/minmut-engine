@@ -28,19 +28,19 @@
     loadCSS(base+"css/minmut.css");
     loadCSS(base+"css/bubble.css");
 
-    async function start(){
+   async function start(){
 
-        await loadScript(base+"js/bubble.js");
+    await loadScript(base+"js/bubble.js");
 
-        await loadScript(base+"js/api.js");
-        
-        await loadScript(base+"js/core.js");
+    await loadScript(base+"js/api.js");
 
-        await loadScript(base+"js/animation.js");
+    await loadScript(base+"js/voice.js");
 
-        await loadScript(base + "js/voice.js");
+    await loadScript(base+"js/core.js");
 
-    }
+    await loadScript(base+"js/animation.js");
+
+}
 
     start();
 
