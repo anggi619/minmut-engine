@@ -1,19 +1,22 @@
-console.log("CORE LOADED");
+(function () {
 
-document.addEventListener("DOMContentLoaded", function () {
+    function loadCSS(url) {
+        var css = document.createElement("link");
+        css.rel = "stylesheet";
+        css.href = url;
+        document.head.appendChild(css);
+    }
 
-    console.log("DOM READY");
+    function loadJS(url) {
+        var script = document.createElement("script");
+        script.src = url;
+        script.defer = true;
+        (document.head || document.documentElement).appendChild(script);
+    }
 
-    const div = document.createElement("div");
+    var base = "https://anggi619.github.io/minmut-engine/";
 
-    div.style.position = "fixed";
-    div.style.right = "20px";
-    div.style.bottom = "20px";
-    div.style.width = "120px";
-    div.style.height = "120px";
-    div.style.background = "red";
-    div.style.zIndex = "999999";
+    loadCSS(base + "css/minmut.css");
+    loadJS(base + "js/core.js");
 
-    document.body.appendChild(div);
-
-});
+})();
