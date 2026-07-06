@@ -1,23 +1,44 @@
-console.log("MINMUT Engine 2.0 Loaded");
+class Minmut {
+
+    constructor(config = {}) {
+
+        this.config = Object.assign({
+            image: "assets/minmut.png",
+            size: 120,
+            position: "bottom-right"
+        }, config);
+
+        this.element = null;
+    }
+
+    init() {
+
+        console.log("MINMUT Engine 2.1 Loaded");
+
+        this.create();
+
+    }
+
+    create() {
+
+        const div = document.createElement("div");
+
+        div.id = "minmut";
+
+        div.innerHTML = `<img src="${this.config.image}" alt="Minmut">`;
+
+        document.body.appendChild(div);
+
+        this.element = div;
+
+    }
+
+}
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    const test = document.createElement("div");
+    const minmut = new Minmut();
 
-    test.innerHTML = "🐹 MINMUT ENGINE 2.0";
-
-    test.style.position = "fixed";
-    test.style.bottom = "20px";
-    test.style.right = "20px";
-    test.style.background = "#16a34a";
-    test.style.color = "#ffffff";
-    test.style.padding = "12px 18px";
-    test.style.borderRadius = "14px";
-    test.style.boxShadow = "0 8px 20px rgba(0,0,0,.25)";
-    test.style.fontFamily = "Arial,sans-serif";
-    test.style.fontWeight = "bold";
-    test.style.zIndex = "999999";
-
-    document.body.appendChild(test);
+    minmut.init();
 
 });
