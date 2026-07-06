@@ -8,6 +8,9 @@ class MinmutCore {
 
         console.log("MINMUT Engine 2.0");
 
+        // Daftarkan engine ke API
+        Minmut.setEngine(this);
+
         if (document.getElementById("minmut")) return;
 
         const div = document.createElement("div");
