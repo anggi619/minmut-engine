@@ -36,6 +36,10 @@
 
     await loadScript(base+"js/voice.js");
 
+    await loadScript(base+"js/openai-voice.js");
+       
+    await loadScript(base+"js/voice-manager.js");
+
     await loadScript(base+"js/core.js");
 
     await loadScript(base+"js/animation.js");
