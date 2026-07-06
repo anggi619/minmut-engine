@@ -1,8 +1,12 @@
 class MinmutCore {
 
-    constructor() {
-        this.base = "https://anggi619.github.io/minmut-engine/";
-    }
+    constructor(){
+
+    this.base="https://anggi619.github.io/minmut-engine/";
+
+    this.voice=new MinmutVoice();
+
+}
 
     init() {
 
