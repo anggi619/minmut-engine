@@ -16,11 +16,11 @@
 
     var base = "https://anggi619.github.io/minmut-engine/";
 
-   loadCSS(base+"css/minmut.css");
-loadCSS(base+"css/bubble.css");
+    loadCSS(base + "css/minmut.css");
+    loadCSS(base + "css/bubble.css");
 
-loadJS(base+"js/core.js");
-loadJS(base+"js/animation.js");
-loadJS(base+"js/bubble.js");
+    loadJS(base + "js/bubble.js");
+    loadJS(base + "js/core.js");
+    loadJS(base + "js/animation.js");
 
 })();
