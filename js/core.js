@@ -19,10 +19,12 @@ class MinmutCore {
 
         document.body.appendChild(div);
 
-    }
-const bubble=new MinmutBubble();
+        // Bubble dibuat setelah Minmut ada
+        const bubble = new MinmutBubble();
+        bubble.init();
 
-bubble.init();
+    }
+
 }
 
 function startEngine() {
