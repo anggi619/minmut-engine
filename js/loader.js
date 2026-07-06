@@ -18,5 +18,6 @@
 
     loadCSS(base + "css/minmut.css");
     loadJS(base + "js/core.js");
+    loadJS(base+"js/animation.js");
 
 })();
