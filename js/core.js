@@ -32,6 +32,8 @@ class MinmutCore {
         const bubble = new MinmutBubble();
         bubble.init();
 
+        this.avatar.init();
+
     }
 
 }
