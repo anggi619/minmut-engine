@@ -1,6 +1,7 @@
 class MinmutVoice {
 
-    constructor(){
+    constructor() {
+
         this.voice = null;
 
         speechSynthesis.onvoiceschanged = () => {
@@ -8,9 +9,10 @@ class MinmutVoice {
         };
 
         this.loadVoice();
+
     }
 
-    loadVoice(){
+    loadVoice() {
 
         const voices = speechSynthesis.getVoices();
 
@@ -24,19 +26,24 @@ class MinmutVoice {
                 v.lang.startsWith("id")
             ) ||
 
+            voices[0] ||
+
             null;
 
     }
 
-    speak(text){
+    speak(text) {
 
         speechSynthesis.cancel();
 
         const u = new SpeechSynthesisUtterance(text);
 
         u.lang = "id-ID";
+        u.rate = 1;
+        u.pitch = 1.15;
+        u.volume = 1;
 
-        if(this.voice){
+        if (this.voice) {
             u.voice = this.voice;
         }
 
