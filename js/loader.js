@@ -1,26 +1,43 @@
 (function () {
 
-    function loadCSS(url) {
-        var css = document.createElement("link");
+    const base = "https://anggi619.github.io/minmut-engine/";
+
+    function loadCSS(url){
+        const css = document.createElement("link");
         css.rel = "stylesheet";
         css.href = url;
         document.head.appendChild(css);
     }
 
-    function loadJS(url) {
-        var script = document.createElement("script");
-        script.src = url;
-        script.defer = true;
-        (document.head || document.documentElement).appendChild(script);
+    function loadScript(url){
+        return new Promise((resolve,reject)=>{
+
+            const s = document.createElement("script");
+
+            s.src = url;
+
+            s.onload = resolve;
+
+            s.onerror = reject;
+
+            document.body.appendChild(s);
+
+        });
     }
 
-    var base = "https://anggi619.github.io/minmut-engine/";
+    loadCSS(base+"css/minmut.css");
+    loadCSS(base+"css/bubble.css");
 
-    loadCSS(base + "css/minmut.css");
-    loadCSS(base + "css/bubble.css");
+    async function start(){
 
-    loadJS(base + "js/bubble.js");
-    loadJS(base + "js/core.js");
-    loadJS(base + "js/animation.js");
+        await loadScript(base+"js/bubble.js");
+
+        await loadScript(base+"js/core.js");
+
+        await loadScript(base+"js/animation.js");
+
+    }
+
+    start();
 
 })();
