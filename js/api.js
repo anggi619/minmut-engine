@@ -59,9 +59,10 @@ class MinmutAPI {
     }
 
 }
-blink() {
 
-    if (this.engine?.avatar) {
+blink(){
+
+    if(this.engine?.avatar){
 
         this.engine.avatar.blink();
 
@@ -69,9 +70,19 @@ blink() {
 
 }
 
-happy() {
+wave(){
 
-    if (this.engine?.avatar) {
+    if(this.engine?.avatar){
+
+        this.engine.avatar.wave();
+
+    }
+
+}
+
+happy(){
+
+    if(this.engine?.avatar){
 
         this.engine.avatar.happy();
 
@@ -79,9 +90,9 @@ happy() {
 
 }
 
-thinking() {
+thinking(){
 
-    if (this.engine?.avatar) {
+    if(this.engine?.avatar){
 
         this.engine.avatar.thinking();
 
@@ -89,16 +100,6 @@ thinking() {
 
 }
 
-wave() {
-
-    if (this.engine?.avatar) {
-
-        this.engine.avatar.wave();
-
-    }
-
-}
-    
 }
 
 window.Minmut = new MinmutAPI();
