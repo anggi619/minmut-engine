@@ -25,8 +25,9 @@
         });
     }
 
-    loadCSS(base+"css/minmut.css");
-    loadCSS(base+"css/bubble.css");
+    loadCSS(base + "css/minmut.css");
+    loadCSS(base + "css/bubble.css");
+    loadCSS(base + "css/avatar-animation.css");
 
    async function start(){
 
