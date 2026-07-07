@@ -4,27 +4,53 @@ class MinmutAvatarAnimation {
 
         this.avatar = avatar;
 
+        this.base = "https://anggi619.github.io/minmut-engine/";
+
     }
 
-    play(name){
+    async play(name){
 
-        if(!this.avatar.minmut) return;
+        switch(name){
 
-        const m = this.avatar.minmut;
+            case "wave":
 
-        m.classList.remove(
-            "blink",
-            "wave",
-            "happy",
-            "thinking",
-            "talk",
-            "idle"
-        );
+                await this.wave();
 
-        // Restart animation
-        void m.offsetWidth;
+                break;
 
-        m.classList.add(name);
+            default:
+
+                console.log(name);
+
+        }
+
+    }
+
+    sleep(ms){
+
+        return new Promise(r=>setTimeout(r,ms));
+
+    }
+
+    async wave(){
+
+        this.avatar.setImage(this.base+"wave/wave1.png");
+
+        await this.sleep(180);
+
+        this.avatar.setImage(this.base+"wave/wave2.png");
+
+        await this.sleep(180);
+
+        this.avatar.setImage(this.base+"wave/wave1.png");
+
+        await this.sleep(180);
+
+        this.avatar.setImage(this.base+"wave/wave2.png");
+
+        await this.sleep(180);
+
+        this.avatar.setImage(this.base+"assets/minmut.png");
 
     }
 
