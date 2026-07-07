@@ -4,7 +4,7 @@ class MinmutAvatar {
 
         this.minmut = null;
 
-        this.base = "https://anggi619.github.io/minmut-engine/";
+        this.img = null;
 
         this.animation = new MinmutAvatarAnimation(this);
 
@@ -14,67 +14,41 @@ class MinmutAvatar {
 
         this.minmut = document.getElementById("minmut");
 
-    }
-
-    sleep(ms) {
-
-        return new Promise(resolve => {
-
-            setTimeout(resolve, ms);
-
-        });
+        this.img = this.minmut.querySelector("img");
 
     }
 
-    setSprite(file) {
+    setImage(src){
 
-        if (!this.minmut) return;
+        if(this.img){
 
-        const img = this.minmut.querySelector("img");
+            this.img.src = src;
 
-        if (!img) return;
-
-        img.src = this.base + "assets/" + file;
+        }
 
     }
 
-    blink() {
+    blink(){
 
         this.animation.play("blink");
 
     }
 
-    happy() {
+    happy(){
 
         this.animation.play("happy");
 
     }
 
-    thinking() {
+    thinking(){
 
         this.animation.play("thinking");
 
     }
 
-    async wave() {
+    wave(){
 
-        this.setSprite("wave/wave1.png");
-
-        await this.sleep(120);
-
-        this.setSprite("wave/wave2.png");
-
-        await this.sleep(120);
-
-        this.setSprite("wave/wave1.png");
-
-        await this.sleep(120);
-
-        this.setSprite("wave/wave2.png");
-
-        await this.sleep(120);
-
-        this.setSprite("idle/idle.png");
+        this.animation.play("wave");
 
     }
 
