@@ -1,12 +1,20 @@
 class MinmutAvatar {
 
-    constructor() {
-        this.minmut = null;
-    }
+    constructor(){
 
-    init() {
-        this.minmut = document.getElementById("minmut");
-    }
+    this.minmut = null;
+
+    this.animation = null;
+
+}
+
+    init(){
+
+    this.minmut = document.getElementById("minmut");
+
+    this.animation = new MinmutAvatarAnimation(this);
+
+}
 
     play(name){
 
