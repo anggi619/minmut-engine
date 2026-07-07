@@ -23,8 +23,10 @@ class MinmutCore {
         div.id = "minmut";
 
         div.innerHTML = `
-            <img src="${this.base}assets/minmut.png" alt="MINMUT">
-        `;
+    <img id="minmut-image"
+         src="${this.base}assets/idle/idle.png"
+         alt="MINMUT">
+`;
 
         document.body.appendChild(div);
 
