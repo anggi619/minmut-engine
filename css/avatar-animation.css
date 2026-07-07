@@ -1,0 +1,23 @@
+#minmut.wave{
+
+    transform:rotate(-8deg);
+
+}
+
+#minmut.happy{
+
+    transform:scale(1.05);
+
+}
+
+#minmut.thinking{
+
+    filter:brightness(.92);
+
+}
+
+#minmut.blink{
+
+    opacity:.9;
+
+}
