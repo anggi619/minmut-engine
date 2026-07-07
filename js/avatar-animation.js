@@ -55,5 +55,33 @@ class MinmutAvatarAnimation {
     }
 
 }
+async play(name){
 
+    switch(name){
+
+        case "wave":
+
+            this.avatar.setImage("wave/wave1.png");
+
+            await this.sleep(150);
+
+            this.avatar.setImage("wave/wave2.png");
+
+            await this.sleep(150);
+
+            this.avatar.setImage("wave/wave1.png");
+
+            await this.sleep(150);
+
+            this.avatar.setImage("idle/idle.png");
+
+            break;
+
+    }
+sleep(ms){
+
+    return new Promise(resolve=>setTimeout(resolve,ms));
+
+}
+}
 window.MinmutAvatarAnimation = MinmutAvatarAnimation;
