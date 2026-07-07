@@ -27,7 +27,13 @@ class MinmutAvatar {
             this.img.src = src;
 
         }
+    setImage(path){
 
+    if(!this.image) return;
+
+    this.image.src = this.base + path;
+
+}
     }
 
     blink(){
