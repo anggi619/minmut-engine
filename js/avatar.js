@@ -1,57 +1,42 @@
 class MinmutAvatar {
 
-    constructor(){
+    constructor() {
 
-    this.minmut = null;
+        this.minmut = null;
 
-    this.animation = null;
-
-}
-
-    init(){
-
-    this.minmut = document.getElementById("minmut");
-
-    this.animation = new MinmutAvatarAnimation(this);
-
-}
-
-    play(name){
-
-        if(!this.minmut) return;
-
-        this.minmut.classList.remove(
-            "blink",
-            "happy",
-            "thinking",
-            "wave"
-        );
-
-        void this.minmut.offsetWidth;
-
-        this.minmut.classList.add(name);
+        this.animation = new MinmutAvatarAnimation(this);
 
     }
 
-    blink(){
-        this.play("blink");
+    init() {
+
+        this.minmut = document.getElementById("minmut");
+
     }
 
-    happy(){
-        this.play("happy");
+    blink() {
+
+        this.animation.play("blink");
+
     }
 
-    thinking(){
-        this.play("thinking");
+    happy() {
+
+        this.animation.play("happy");
+
+    }
+
+    thinking() {
+
+        this.animation.play("thinking");
+
     }
 
     wave() {
 
-    console.log("Wave dipanggil");
+        this.animation.play("wave");
 
-    alert("Wave berhasil");
-
-}
+    }
 
 }
 
