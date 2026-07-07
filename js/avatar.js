@@ -2,21 +2,23 @@ class MinmutAvatar {
 
     constructor() {
 
-        this.minmut = null;
+    this.base = "https://anggi619.github.io/minmut-engine/assets/";
 
-        this.img = null;
+    this.minmut = null;
 
-        this.animation = new MinmutAvatarAnimation(this);
+    this.image = null;
 
-    }
+    this.animation = new MinmutAvatarAnimation(this);
+
+}
 
     init() {
 
-        this.minmut = document.getElementById("minmut");
+    this.minmut = document.getElementById("minmut");
 
-        this.img = this.minmut.querySelector("img");
+    this.image = document.getElementById("minmut-image");
 
-    }
+}
 
     setImage(src){
 
