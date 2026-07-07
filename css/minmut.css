@@ -31,3 +31,36 @@ cursor:pointer;
 user-select:none;
 
 }
+#minmut{
+
+position:fixed;
+
+right:20px;
+
+bottom:-220px;
+
+width:150px;
+
+z-index:999999;
+
+transition:.8s;
+
+}
+
+#minmut.show{
+
+bottom:20px;
+
+}
+
+#minmut img{
+
+width:100%;
+
+display:block;
+
+cursor:pointer;
+
+user-select:none;
+
+}
