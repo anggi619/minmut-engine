@@ -2,13 +2,13 @@ class MinmutAvatarAnimation {
 
     constructor(avatar){
 
-    this.avatar=avatar;
+        this.avatar = avatar;
 
-    this.base="https://anggi619.github.io/minmut-engine/assets/";
+        this.base = "https://anggi619.github.io/minmut-engine/assets/";
 
-    this.registry=new MinmutAnimationRegistry();
+        this.registry = new MinmutAnimationRegistry();
 
-}
+    }
 
     sleep(ms){
 
@@ -18,50 +18,44 @@ class MinmutAvatarAnimation {
 
     async playFrames(animation){
 
-    for(let i=1;i<=animation.frames;i++){
+        for(let i=1;i<=animation.frames;i++){
+
+            this.avatar.setImage(
+
+                this.base +
+                animation.folder +
+                "/" +
+                animation.folder +
+                i +
+                ".png"
+
+            );
+
+            await this.sleep(animation.speed);
+
+        }
 
         this.avatar.setImage(
 
-            this.base +
-            animation.folder +
-            "/" +
-            animation.folder +
-            i +
-            ".png"
+            this.base + "idle/idle1.png"
 
         );
 
-        await this.sleep(animation.speed);
-
     }
 
-    this.avatar.setImage(
-
-        this.base+"idle/idle1.png"
-
-    );
-
-}
     async play(name){
 
-        switch(name){
+        const animation = this.registry.get(name);
 
-            case "wave":
-async play(name){
+        if(!animation){
 
-    const animation = this.registry.get(name);
+            console.warn("Animation tidak ditemukan:", name);
 
-    if(!animation){
+            return;
 
-        console.warn("Animation tidak ditemukan:", name);
+        }
 
-        return;
-
-    }
-
-    await this.playFrames(animation);
-
-}
+        await this.playFrames(animation);
 
     }
 
