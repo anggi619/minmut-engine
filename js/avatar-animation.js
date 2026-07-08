@@ -47,16 +47,21 @@ class MinmutAvatarAnimation {
         switch(name){
 
             case "wave":
+async play(name){
 
-                await this.wave();
+    const animation = this.registry.get(name);
 
-                break;
+    if(!animation){
 
-            default:
+        console.warn("Animation tidak ditemukan:", name);
 
-                console.log(name);
+        return;
 
-        }
+    }
+
+    await this.playFrames(animation);
+
+}
 
     }
 
