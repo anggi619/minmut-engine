@@ -2,11 +2,13 @@ class MinmutAvatarAnimation {
 
     constructor(avatar){
 
-        this.avatar = avatar;
+    this.avatar=avatar;
 
-        this.base = "https://anggi619.github.io/minmut-engine/assets/";
+    this.base="https://anggi619.github.io/minmut-engine/assets/";
 
-    }
+    this.registry=new MinmutAnimationRegistry();
+
+}
 
     sleep(ms){
 
