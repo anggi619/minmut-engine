@@ -14,9 +14,16 @@ class MinmutTalkLoop {
 
         while(this.running){
 
+            // Mainkan animasi talk
             Minmut.play("talk");
 
-            await this.sleep(1200);
+            // Tunggu durasi satu siklus animasi talk
+            const talk = Minmut.engine.avatar.animation.registry.get("talk");
+
+            const duration =
+                talk.sequence.length * talk.speed;
+
+            await this.sleep(duration);
 
         }
 
@@ -30,7 +37,7 @@ class MinmutTalkLoop {
 
     sleep(ms){
 
-        return new Promise(resolve=>setTimeout(resolve,ms));
+        return new Promise(resolve=>setTimeout(resolve, ms));
 
     }
 
