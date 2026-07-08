@@ -30,9 +30,11 @@ class MinmutAvatarAnimation {
 
     play(name){
 
-        this.enqueue(name);
+    console.log("AvatarAnimation.play() :", name);
 
-    }
+    this.enqueue(name);
+
+}
 
     async runQueue(){
 
