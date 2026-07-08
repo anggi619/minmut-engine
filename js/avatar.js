@@ -30,9 +30,11 @@ class MinmutAvatar {
 
     play(name){
 
-        this.animation.play(name);
+    console.log("Avatar.play() :", name);
 
-    }
+    this.animation.play(name);
+
+}
 
 }
 
