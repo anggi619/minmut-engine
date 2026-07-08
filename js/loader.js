@@ -43,6 +43,8 @@
 
     await loadScript(base+"js/talk-loop.js");
 
+    await loadScript(base+"js/behavior-manager.js");
+
     await loadScript(base+"js/animation-registry.js");
 
     await loadScript(base+"js/avatar-animation.js");
