@@ -64,30 +64,35 @@ class MinmutAvatarAnimation {
 
     async playFrames(animation){
 
-    for(const frame of animation.sequence){
+        for(const frame of animation.sequence){
 
-        this.avatar.setImage(
+            this.avatar.setImage(
 
-            this.base +
-            animation.folder +
-            "/" +
-            animation.folder +
-            frame +
-            ".png"
+                this.base +
+                animation.folder +
+                "/" +
+                animation.folder +
+                frame +
+                ".png"
 
-        );
+            );
 
-        await this.sleep(animation.speed);
+            await this.sleep(animation.speed);
+
+        }
+
+        // Kembali ke idle jika diizinkan
+        if(animation.returnIdle !== false){
+
+            this.avatar.setImage(
+
+                this.base + "idle/idle1.png"
+
+            );
+
+        }
 
     }
-
-    this.avatar.setImage(
-
-        this.base + "idle/idle1.png"
-
-    );
-
-}
 
 }
 
