@@ -50,7 +50,7 @@ class MinmutAvatarAnimation {
 
         await this.sleep(180);
 
-        this.avatar.setImage(this.base + "idle/idle.png");
+        this.avatar.setImage(this.base + "idle/idle1.png");
 
     }
 
