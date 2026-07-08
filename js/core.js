@@ -8,6 +8,8 @@ class MinmutCore {
 
     this.avatar = new MinmutAvatar();
 
+    this.talk = new MinmutTalkLoop();
+
 }
 
     init() {
