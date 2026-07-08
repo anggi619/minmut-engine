@@ -17,6 +17,7 @@ class MinmutVoice {
         const voices = speechSynthesis.getVoices();
 
         this.voice =
+
             voices.find(v =>
                 v.lang.startsWith("id") &&
                 v.name.toLowerCase().includes("male")
@@ -32,20 +33,49 @@ class MinmutVoice {
 
     }
 
-    speak(text) {
+    speak(text){
 
         speechSynthesis.cancel();
 
         const u = new SpeechSynthesisUtterance(text);
 
         u.lang = "id-ID";
+
         u.rate = 1;
+
         u.pitch = 1.15;
+
         u.volume = 1;
 
-        if (this.voice) {
+        if(this.voice){
+
             u.voice = this.voice;
+
         }
+
+        // =========================
+        // Saat mulai bicara
+        // =========================
+
+        u.onstart = ()=>{
+
+            console.log("Voice Start");
+
+            Minmut.play("talk");
+
+        };
+
+        // =========================
+        // Saat selesai bicara
+        // =========================
+
+        u.onend = ()=>{
+
+            console.log("Voice End");
+
+            Minmut.play("idle");
+
+        };
 
         speechSynthesis.speak(u);
 
