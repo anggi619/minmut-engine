@@ -24,7 +24,7 @@ class MinmutCore {
 
         div.innerHTML = `
     <img id="minmut-image"
-         src="${this.base}assets/idle/idle.png"
+         src="${this.base}assets/idle/idle1.png"
          alt="MINMUT">
 `;
 
