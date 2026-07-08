@@ -65,28 +65,6 @@ async play(name){
 
     }
 
-    async wave(){
-
-        this.avatar.setImage(this.base + "wave/wave1.png");
-
-        await this.sleep(180);
-
-        this.avatar.setImage(this.base + "wave/wave2.png");
-
-        await this.sleep(180);
-
-        this.avatar.setImage(this.base + "wave/wave1.png");
-
-        await this.sleep(180);
-
-        this.avatar.setImage(this.base + "wave/wave2.png");
-
-        await this.sleep(180);
-
-        this.avatar.setImage(this.base + "idle/idle1.png");
-
-    }
-
 }
 
 window.MinmutAvatarAnimation = MinmutAvatarAnimation;
