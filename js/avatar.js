@@ -30,23 +30,33 @@ class MinmutAvatar {
 
     blink(){
 
-        this.animation.play("blink");
+    this.animation.play("blink");
 
-    }
+}
 
-    happy(){
+wave(){
 
-        this.animation.play("happy");
+    this.animation.play("wave");
 
-    }
+}
 
-    thinking(){
+happy(){
 
-        this.animation.play("thinking");
+    this.animation.play("happy");
 
-    }
+}
 
-    wave(){
+thinking(){
+
+    this.animation.play("thinking");
+
+}
+
+play(name){
+
+    this.animation.play(name);
+
+}
 
         this.animation.play("wave");
 
