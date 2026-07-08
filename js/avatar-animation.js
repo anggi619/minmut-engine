@@ -16,6 +16,13 @@ class MinmutAvatarAnimation {
 
     sleep(ms){
 
+        enqueue(name){
+
+    this.queue.push(name);
+
+    this.runQueue();
+
+}
         return new Promise(resolve => setTimeout(resolve, ms));
 
     }
