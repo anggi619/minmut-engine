@@ -16,7 +16,7 @@ class MinmutAPI {
 
         const m = document.getElementById("minmut");
 
-        if (m) {
+        if(m){
 
             m.style.display = "block";
 
@@ -28,7 +28,7 @@ class MinmutAPI {
 
         const m = document.getElementById("minmut");
 
-        if (m) {
+        if(m){
 
             m.style.display = "none";
 
@@ -40,7 +40,7 @@ class MinmutAPI {
 
         const bubble = document.getElementById("minmut-bubble");
 
-        if (!bubble) return;
+        if(!bubble) return;
 
         bubble.innerHTML = text;
 
@@ -50,65 +50,25 @@ class MinmutAPI {
 
     async speak(text){
 
-    this.say(text);
+        this.say(text);
 
-    if(this.engine){
+        if(this.engine){
 
-        await this.engine.voice.speak(text);
+            await this.engine.voice.speak(text);
 
-    }
-
-}
-    
-play(name){
-
-    if(this.engine?.avatar){
-
-        this.engine.avatar.play(name);
+        }
 
     }
 
-}
-    
-blink(){
+    play(name){
 
-    if(this.engine?.avatar){
+        if(this.engine?.avatar){
 
-        this.engine.avatar.blink();
+            this.engine.avatar.play(name);
 
-    }
-
-}
-
-wave(){
-
-    if(this.engine?.avatar){
-
-        this.engine.avatar.wave();
+        }
 
     }
-
-}
-
-happy(){
-
-    if(this.engine?.avatar){
-
-        this.engine.avatar.happy();
-
-    }
-
-}
-
-thinking(){
-
-    if(this.engine?.avatar){
-
-        this.engine.avatar.thinking();
-
-    }
-
-}
 
 }
 
