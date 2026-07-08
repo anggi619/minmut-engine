@@ -59,7 +59,17 @@ class MinmutAPI {
     }
 
 }
+    
+play(name){
 
+    if(this.engine?.avatar){
+
+        this.engine.avatar.play(name);
+
+    }
+
+}
+    
 blink(){
 
     if(this.engine?.avatar){
