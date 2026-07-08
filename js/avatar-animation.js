@@ -16,6 +16,32 @@ class MinmutAvatarAnimation {
 
     }
 
+    async playFrames(animation){
+
+    for(let i=1;i<=animation.frames;i++){
+
+        this.avatar.setImage(
+
+            this.base +
+            animation.folder +
+            "/" +
+            animation.folder +
+            i +
+            ".png"
+
+        );
+
+        await this.sleep(animation.speed);
+
+    }
+
+    this.avatar.setImage(
+
+        this.base+"idle/idle1.png"
+
+    );
+
+}
     async play(name){
 
         switch(name){
