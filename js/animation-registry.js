@@ -52,10 +52,22 @@ class MinmutAnimationRegistry{
 
     get(name){
 
-        return this.animations[name];
+        return this.animations[name] ?? null;
+
+    }
+
+    has(name){
+
+        return name in this.animations;
+
+    }
+
+    all(){
+
+        return this.animations;
 
     }
 
 }
 
-window.MinmutAnimationRegistry=MinmutAnimationRegistry;
+window.MinmutAnimationRegistry = MinmutAnimationRegistry;
