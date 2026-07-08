@@ -4,47 +4,47 @@ class MinmutAnimationRegistry{
 
         this.animations={
 
-            idle:{
-                folder:"idle",
-                frames:1,
-                speed:800
-            },
+           idle:{
+    folder:"idle",
+    frames:1,
+    speed:1000
+},
 
-            blink:{
-                folder:"blink",
-                frames:2,
-                speed:120
-            },
+blink:{
+    folder:"blink",
+    frames:2,
+    speed:120
+},
 
-            wave:{
-                folder:"wave",
-                frames:2,
-                speed:180
-            },
+wave:{
+    folder:"wave",
+    frames:2,
+    speed:350
+},
 
-            talk:{
-                folder:"talk",
-                frames:3,
-                speed:120
-            },
+talk:{
+    folder:"talk",
+    frames:3,
+    speed:90
+},
 
-            happy:{
-                folder:"happy",
-                frames:3,
-                speed:150
-            },
+happy:{
+    folder:"happy",
+    frames:3,
+    speed:180
+},
 
-            thinking:{
-                folder:"thinking",
-                frames:3,
-                speed:220
-            },
+thinking:{
+    folder:"thinking",
+    frames:3,
+    speed:250
+},
 
-            sad:{
-                folder:"sad",
-                frames:3,
-                speed:180
-            }
+sad:{
+    folder:"sad",
+    frames:3,
+    speed:220
+}
 
         };
 
