@@ -4,6 +4,8 @@ class MinmutVoiceManager {
 
         this.mode = "browser";
 
+        this.browserVoice = new MinmutVoice();
+
     }
 
     setMode(mode) {
@@ -16,16 +18,13 @@ class MinmutVoiceManager {
 
         if (this.mode === "browser") {
 
-            const v = new MinmutVoice();
-            v.speak(text);
-
-            return;
+            return await this.browserVoice.speak(text);
 
         }
 
         if (this.mode === "openai") {
 
-            await MinmutOpenAI.speak(text);
+            return await MinmutOpenAI.speak(text);
 
         }
 
