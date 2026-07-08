@@ -38,50 +38,54 @@ class MinmutAvatarAnimation {
 
     async runQueue(){
 
-        if(this.running) return;
+    console.log("Queue Start");
 
-        this.running = true;
+    if(this.running) return;
 
-        while(this.queue.length > 0){
+    this.running = true;
 
-            const name = this.queue.shift();
+    while(this.queue.length > 0){
 
-            const animation = this.registry.get(name);
+        const name = this.queue.shift();
 
-            if(animation){
+        console.log("Queue :", name);
 
-                await this.playFrames(animation);
+        const animation = this.registry.get(name);
 
-            }else{
+        if(animation){
 
-                console.warn("Animation tidak ditemukan :", name);
-
-            }
+            await this.playFrames(animation);
 
         }
 
-        this.running = false;
-
     }
+
+    this.running = false;
+
+    console.log("Queue End");
+
+}
 
     async playFrames(animation){
 
         for(const frame of animation.sequence){
 
-            this.avatar.setImage(
+    console.log(animation.folder, frame);
 
-                this.base +
-                animation.folder +
-                "/" +
-                animation.folder +
-                frame +
-                ".png"
+    this.avatar.setImage(
 
-            );
+        this.base +
+        animation.folder +
+        "/" +
+        animation.folder +
+        frame +
+        ".png"
 
-            await this.sleep(animation.speed);
+    );
 
-        }
+    await this.sleep(animation.speed);
+
+}
 
         // Kembali ke idle jika diizinkan
         if(animation.returnIdle !== false){
