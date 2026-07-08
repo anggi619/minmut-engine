@@ -33,53 +33,72 @@ class MinmutVoice {
 
     }
 
-    speak(text){
+    async speak(text){
 
-        speechSynthesis.cancel();
+        return new Promise(resolve=>{
 
-        const u = new SpeechSynthesisUtterance(text);
+            speechSynthesis.cancel();
 
-        u.lang = "id-ID";
+            const u = new SpeechSynthesisUtterance(text);
 
-        u.rate = 1;
+            u.lang = "id-ID";
+            u.rate = 1;
+            u.pitch = 1.15;
+            u.volume = 1;
 
-        u.pitch = 1.15;
+            if(this.voice){
 
-        u.volume = 1;
+                u.voice = this.voice;
 
-        if(this.voice){
+            }
 
-            u.voice = this.voice;
+            // Saat mulai bicara
+            u.onstart = ()=>{
 
-        }
+                console.log("Voice Start");
 
-        // =========================
-        // Saat mulai bicara
-        // =========================
+                if(Minmut.engine?.talk){
 
-        u.onstart = ()=>{
+                    Minmut.engine.talk.start();
 
-    console.log("Voice Start");
+                }
 
-    Minmut.engine.talk.start();
+            };
 
-};
+            // Saat selesai bicara
+            u.onend = ()=>{
 
-        // =========================
-        // Saat selesai bicara
-        // =========================
+                console.log("Voice End");
 
-        u.onend = ()=>{
+                if(Minmut.engine?.talk){
 
-    console.log("Voice End");
+                    Minmut.engine.talk.stop();
 
-    Minmut.engine.talk.stop();
+                }
 
-    Minmut.play("idle");
+                Minmut.play("idle");
 
-};
+                resolve();
 
-        speechSynthesis.speak(u);
+            };
+
+            u.onerror = (e)=>{
+
+                console.error("Voice Error", e);
+
+                if(Minmut.engine?.talk){
+
+                    Minmut.engine.talk.stop();
+
+                }
+
+                resolve();
+
+            };
+
+            speechSynthesis.speak(u);
+
+        });
 
     }
 
