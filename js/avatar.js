@@ -2,38 +2,30 @@ class MinmutAvatar {
 
     constructor() {
 
-    this.base = "https://anggi619.github.io/minmut-engine/assets/";
+        this.base = "https://anggi619.github.io/minmut-engine/assets/";
 
-    this.minmut = null;
+        this.minmut = null;
 
-    this.image = null;
+        this.image = null;
 
-    this.animation = new MinmutAvatarAnimation(this);
+        this.animation = new MinmutAvatarAnimation(this);
 
-}
+    }
 
     init() {
 
-    this.minmut = document.getElementById("minmut");
+        this.minmut = document.getElementById("minmut");
 
-    this.image = document.getElementById("minmut-image");
+        this.image = document.getElementById("minmut-image");
 
-}
+    }
 
     setImage(src){
 
-        if(this.img){
+        if(!this.image) return;
 
-            this.img.src = src;
+        this.image.src = src;
 
-        }
-    setImage(path){
-
-    if(!this.image) return;
-
-    this.image.src = this.base + path;
-
-}
     }
 
     blink(){
