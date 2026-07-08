@@ -10,6 +10,7 @@ class MinmutCore {
 
     this.talk = new MinmutTalkLoop();
 
+    this.behavior = new MinmutBehaviorManager();
 }
 
     init() {
@@ -38,6 +39,7 @@ class MinmutCore {
 
         this.avatar.init();
 
+        this.behavior.start();
     }
 
 }
