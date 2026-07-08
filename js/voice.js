@@ -59,11 +59,11 @@ class MinmutVoice {
 
         u.onstart = ()=>{
 
-            console.log("Voice Start");
+    console.log("Voice Start");
 
-            Minmut.play("talk");
+    Minmut.engine.talk.start();
 
-        };
+};
 
         // =========================
         // Saat selesai bicara
@@ -71,11 +71,13 @@ class MinmutVoice {
 
         u.onend = ()=>{
 
-            console.log("Voice End");
+    console.log("Voice End");
 
-            Minmut.play("idle");
+    Minmut.engine.talk.stop();
 
-        };
+    Minmut.play("idle");
+
+};
 
         speechSynthesis.speak(u);
 
