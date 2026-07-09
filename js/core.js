@@ -10,6 +10,8 @@ class MinmutCore {
 
     this.talk = new MinmutTalkLoop();
 
+    this.conversation = new MinmutConversation();
+
     this.behavior = new MinmutBehaviorManager();
 }
 
