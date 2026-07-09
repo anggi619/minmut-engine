@@ -1,85 +1,136 @@
+/**
+ * -----------------------------------------
+ * MINMUT Engine Loader
+ * Version : 5.1.1
+ * Status  : DEVELOPMENT
+ * -----------------------------------------
+ */
+
 (function () {
 
     const base = "https://anggi619.github.io/minmut-engine/";
 
-    function loadCSS(url){
+    function loadCSS(url) {
+
         const css = document.createElement("link");
+
         css.rel = "stylesheet";
+
         css.href = url;
+
         document.head.appendChild(css);
+
     }
 
-    function loadScript(url){
-        return new Promise((resolve,reject)=>{
+    function loadScript(url) {
 
-            const s = document.createElement("script");
+        return new Promise((resolve, reject) => {
 
-            s.src = url;
+            const script = document.createElement("script");
 
-            s.onload = resolve;
+            script.src = url;
 
-            s.onerror = reject;
+            script.onload = () => {
 
-            document.body.appendChild(s);
+                console.log("Loaded :", url);
+
+                resolve();
+
+            };
+
+            script.onerror = () => {
+
+                console.error("Failed :", url);
+
+                reject();
+
+            };
+
+            document.body.appendChild(script);
 
         });
+
     }
+
+    // ==========================
+    // CSS
+    // ==========================
 
     loadCSS(base + "css/minmut.css");
     loadCSS(base + "css/bubble.css");
     loadCSS(base + "css/avatar-animation.css");
 
-   async function start(){
+    async function start() {
 
-    await loadScript(base+"js/bubble.js");
+        console.log("===== MINMUT ENGINE START =====");
 
-    await loadScript(base+"js/conversation.js");
+        // ==========================
+        // FOUNDATION
+        // ==========================
 
-    await loadScript(base+"js/api.js");
+        await loadScript(base + "js/logger.js");
+        await loadScript(base + "js/version.js");
 
-    await loadScript(base+"js/logger.js");
+        // ==========================
+        // BRAIN
+        // ==========================
 
-    await loadScript(base+"js/brain.js");
+        await loadScript(base + "js/brain.js");
+        await loadScript(base + "js/context.js");
+        await loadScript(base + "js/brain-intent.js");
+        await loadScript(base + "js/brain-search.js");
+        await loadScript(base + "js/response.js");
 
-    await loadScript(base+"js/context.js");
-       
-    await loadScript(base+"js/brain-search.js");
+        // ==========================
+        // API
+        // ==========================
 
-    await loadScript(base+"js/brain-intent.js");
+        await loadScript(base + "js/api.js");
+        await loadScript(base + "js/conversation.js");
 
-    await loadScript(base+"js/response.js");
+        // ==========================
+        // EVENT
+        // ==========================
 
-    await loadScript(base+"js/version.js");
+        await loadScript(base + "js/event-manager.js");
+        await loadScript(base + "js/scheduler.js");
 
-    await loadScript(base+"js/scheduler.js");
+        // ==========================
+        // VOICE
+        // ==========================
 
-    await loadScript(base+"js/event-manager.js");
+        await loadScript(base + "js/voice.js");
+        await loadScript(base + "js/openai-voice.js");
+        await loadScript(base + "js/voice-manager.js");
+        await loadScript(base + "js/voice-queue.js");
+        await loadScript(base + "js/talk-loop.js");
 
-    await loadScript(base+"js/voice.js");
+        // ==========================
+        // AVATAR
+        // ==========================
 
-    await loadScript(base+"js/openai-voice.js");
+        await loadScript(base + "js/animation-queue.js");
+        await loadScript(base + "js/animation-registry.js");
+        await loadScript(base + "js/avatar-animation.js");
+        await loadScript(base + "js/avatar.js");
+        await loadScript(base + "js/animation.js");
+        await loadScript(base + "js/bubble.js");
 
-    await loadScript(base+"js/voice-manager.js");
+        // ==========================
+        // BEHAVIOR
+        // ==========================
 
-    await loadScript(base+"js/voice-queue.js");
+        await loadScript(base + "js/behavior-manager.js");
 
-    await loadScript(base+"js/talk-loop.js");
+        // ==========================
+        // CORE
+        // ==========================
 
-    await loadScript(base+"js/behavior-manager.js");
+        await loadScript(base + "js/core.js");
 
-    await loadScript(base+"js/animation-queue.js");
+        console.log("===== MINMUT ENGINE READY =====");
 
-    await loadScript(base+"js/animation-registry.js");
-
-    await loadScript(base+"js/avatar-animation.js");
-
-    await loadScript(base+"js/avatar.js");
-
-    await loadScript(base+"js/core.js");
-
-    await loadScript(base+"js/animation.js");
-
-}
+    }
 
     start();
 
