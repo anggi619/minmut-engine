@@ -1,9 +1,7 @@
 /**
  * -----------------------------------------
  * MINMUT Brain Engine
- * Version : 1.0
- * File    : brain.js
- * Author  : Anggi Pratama & OpenAI
+ * Version : 1.1
  * -----------------------------------------
  */
 
@@ -19,7 +17,6 @@ class MinmutBrain {
 
     async load(path) {
 
-        // Gunakan cache jika sudah pernah dimuat
         if (this.cache[path]) {
 
             return this.cache[path];
@@ -32,7 +29,7 @@ class MinmutBrain {
 
             if (!response.ok) {
 
-                throw new Error("File tidak ditemukan : " + path);
+                throw new Error("Brain file tidak ditemukan : " + path);
 
             }
 
@@ -46,7 +43,7 @@ class MinmutBrain {
 
         }
 
-        catch (e) {
+        catch(e){
 
             Logger.error(e.message);
 
@@ -56,11 +53,69 @@ class MinmutBrain {
 
     }
 
-    clearCache() {
+    async getInfo(program){
+
+        return await this.load(
+
+            `program/${program}/info.json`
+
+        );
+
+    }
+
+    async getFAQ(program){
+
+        return await this.load(
+
+            `program/${program}/faq.json`
+
+        );
+
+    }
+
+    async getServices(program){
+
+        return await this.load(
+
+            `program/${program}/services.json`
+
+        );
+
+    }
+
+    async getHealthTips(program){
+
+        return await this.load(
+
+            `program/${program}/healthtips.json`
+
+        );
+
+    }
+
+    async getNews(program){
+
+        return await this.load(
+
+            `program/${program}/news.json`
+
+        );
+
+    }
+
+    async getAvatar(program){
+
+        return await this.load(
+
+            `program/${program}/avatar.json`
+
+        );
+
+    }
+
+    clearCache(){
 
         this.cache = {};
-
-        Logger.info("Brain Cache Cleared");
 
     }
 
