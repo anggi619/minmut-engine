@@ -8,9 +8,7 @@ class MinmutAvatarAnimation {
 
         this.registry = new MinmutAnimationRegistry();
 
-        this.queue = [];
-
-        this.running = false;
+        this.queue = new MinmutAnimationQueue(this);
 
     }
 
@@ -20,74 +18,35 @@ class MinmutAvatarAnimation {
 
     }
 
-    enqueue(name){
-
-        this.queue.push(name);
-
-        this.runQueue();
-
-    }
-
     play(name){
 
-    console.log("AvatarAnimation.play() :", name);
+        console.log("AvatarAnimation.play() :", name);
 
-    this.enqueue(name);
-
-}
-
-    async runQueue(){
-
-    console.log("Queue Start");
-
-    if(this.running) return;
-
-    this.running = true;
-
-    while(this.queue.length > 0){
-
-        const name = this.queue.shift();
-
-        console.log("Queue :", name);
-
-        const animation = this.registry.get(name);
-
-        if(animation){
-
-            await this.playFrames(animation);
-
-        }
+        this.queue.add(name);
 
     }
-
-    this.running = false;
-
-    console.log("Queue End");
-
-}
 
     async playFrames(animation){
 
         for(const frame of animation.sequence){
 
-    console.log(animation.folder, frame);
+            console.log(animation.folder, frame);
 
-    this.avatar.setImage(
+            this.avatar.setImage(
 
-        this.base +
-        animation.folder +
-        "/" +
-        animation.folder +
-        frame +
-        ".png"
+                this.base +
+                animation.folder +
+                "/" +
+                animation.folder +
+                frame +
+                ".png"
 
-    );
+            );
 
-    await this.sleep(animation.speed);
+            await this.sleep(animation.speed);
 
-}
+        }
 
-        // Kembali ke idle jika diizinkan
         if(animation.returnIdle !== false){
 
             this.avatar.setImage(
