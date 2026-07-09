@@ -1,0 +1,28 @@
+{
+    "services": [
+        {
+            "name": "Penyuluhan Kesehatan",
+            "description": "Memberikan edukasi kesehatan kepada masyarakat."
+        },
+        {
+            "name": "Konseling Kesehatan",
+            "description": "Konsultasi dan edukasi sesuai kebutuhan masyarakat."
+        },
+        {
+            "name": "PHBS",
+            "description": "Pembinaan Perilaku Hidup Bersih dan Sehat."
+        },
+        {
+            "name": "GERMAS",
+            "description": "Gerakan Masyarakat Hidup Sehat."
+        },
+        {
+            "name": "Media Promosi",
+            "description": "Pembuatan dan penyebaran media edukasi kesehatan."
+        },
+        {
+            "name": "Pemberdayaan Masyarakat",
+            "description": "Meningkatkan peran aktif masyarakat dalam pembangunan kesehatan."
+        }
+    ]
+}
