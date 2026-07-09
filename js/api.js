@@ -1,3 +1,12 @@
+/**
+ * -----------------------------------------
+ * MINMUT Engine
+ * Version : 4.1.0
+ * File    : api.js
+ * Author  : Anggi Pratama & OpenAI
+ * -----------------------------------------
+ */
+
 class MinmutAPI {
 
     constructor() {
@@ -6,19 +15,27 @@ class MinmutAPI {
 
     }
 
+    // =====================================
+    // Engine
+    // =====================================
+
     setEngine(engine) {
 
         this.engine = engine;
 
     }
 
+    // =====================================
+    // Avatar
+    // =====================================
+
     show() {
 
-        const m = document.getElementById("minmut");
+        const avatar = document.getElementById("minmut");
 
-        if (m) {
+        if (avatar) {
 
-            m.style.display = "block";
+            avatar.style.display = "block";
 
         }
 
@@ -26,19 +43,19 @@ class MinmutAPI {
 
     hide() {
 
-        const m = document.getElementById("minmut");
+        const avatar = document.getElementById("minmut");
 
-        if (m) {
+        if (avatar) {
 
-            m.style.display = "none";
+            avatar.style.display = "none";
 
         }
 
     }
 
-    // ==========================
+    // =====================================
     // Bubble
-    // ==========================
+    // =====================================
 
     say(text) {
 
@@ -62,79 +79,77 @@ class MinmutAPI {
 
     }
 
-    async sayFor(text, duration = 2000) {
+    // =====================================
+    // Voice
+    // =====================================
+
+    async speak(text) {
+
+        if (!this.engine) return;
 
         this.say(text);
 
-        return new Promise(resolve => {
-
-            setTimeout(() => {
-
-                this.hideBubble();
-
-                resolve();
-
-            }, duration);
-
-        });
+        await this.engine.voiceQueue.addAndWait(text);
 
     }
 
-    // ==========================
-    // Voice
-    // ==========================
+    // =====================================
+    // Conversation
+    // =====================================
 
-    async speak(text){
+    conversation(messages) {
 
-    this.say(text);
+        if (!this.engine) return;
 
-    if(!this.engine) return;
-
-    this.engine.voiceQueue.add(text);
-
-}
-
-    async conversation(messages){
-
-    if(this.engine){
-
-        await this.engine.conversation.play(messages);
+        this.engine.conversation.add(messages);
 
     }
 
-}
+    // =====================================
+    // Brain Chat
+    // =====================================
 
-async ask(question){
+    async ask(question) {
 
-    const data = await BrainSearch.ask(question);
+        const data = await BrainSearch.ask(question);
 
-    const text = Response.build(data);
+        const text = Response.build(data);
 
-    await this.speak(text);
+        this.conversation([
 
-}
+            {
 
-    // ==========================
-    // Avatar Animation
-    // ==========================
+                text: text,
 
-    play(name) {
+                animation: "thinking",
 
-        if (this.engine?.avatar) {
+                delay: 500
 
-            this.engine.avatar.play(name);
+            }
 
-        }
+        ]);
 
     }
 
-    // ==========================
-    // Helper
-    // ==========================
+    // =====================================
+    // Animation
+    // =====================================
+
+    play(animation) {
+
+        if (!this.engine?.avatar) return;
+
+        this.engine.avatar.play(animation);
+
+    }
+
+    // =====================================
+    // Version
+    // =====================================
 
     getVersion() {
 
-        return window.MINMUT_VERSION ?? null;
+        return window.MINMUT_VERSION ?? "Unknown";
 
     }
 
