@@ -1,7 +1,7 @@
 /**
  * -----------------------------------------
  * MINMUT Engine
- * Version : 3.2 Stable
+ * Version : 4.1.0
  * File    : conversation.js
  * Author  : Anggi Pratama & OpenAI
  * -----------------------------------------
@@ -11,75 +11,125 @@ class MinmutConversation {
 
     constructor() {
 
-        this.running = false;
+        this.queue = [];
 
-        this.stopped = false;
+        this.running = false;
 
     }
 
-    async play(messages) {
+    // =====================================
+    // Tambah Conversation
+    // =====================================
 
-        if (this.running) {
+    add(messages) {
 
-            Logger.warn("Conversation sedang berjalan.");
+        if (!Array.isArray(messages)) {
 
-            return;
+            messages = [messages];
 
         }
+
+        this.queue.push(messages);
+
+        this.run();
+
+    }
+
+    // =====================================
+    // Jalankan Queue
+    // =====================================
+
+    async run() {
+
+        if (this.running) return;
 
         this.running = true;
 
-        this.stopped = false;
+        while (this.queue.length > 0) {
 
-        Logger.info("Conversation Started");
+            const messages = this.queue.shift();
 
-        try {
-
-            for (const message of messages) {
-
-                if (this.stopped) break;
-
-                if (message.animation) {
-
-                    Minmut.play(message.animation);
-
-                }
-
-                await Minmut.sayFor(
-
-                    message.text,
-
-                    message.duration ?? 2500
-
-                );
-
-            }
-
-        } finally {
-
-            this.running = false;
-
-            this.stopped = false;
-
-            Logger.info("Conversation Finished");
+            await this.play(messages);
 
         }
 
+        this.running = false;
+
     }
 
-    stop() {
+    // =====================================
+    // Play Conversation
+    // =====================================
 
-        this.stopped = true;
+    async play(messages) {
+
+        for (const message of messages) {
+
+            // Animasi
+
+            if (message.animation) {
+
+                Minmut.play(message.animation);
+
+            }
+
+            // Bubble
+
+            Minmut.say(message.text);
+
+            // Voice
+
+            await Minmut.engine.voiceQueue.addAndWait(
+
+                message.text
+
+            );
+
+            // Delay
+
+            await this.sleep(
+
+                message.delay ?? 500
+
+            );
+
+        }
 
         Minmut.hideBubble();
 
-        Logger.info("Conversation Stopped");
+    }
+
+    // =====================================
+    // Clear Queue
+    // =====================================
+
+    clear() {
+
+        this.queue = [];
 
     }
+
+    // =====================================
+    // Status
+    // =====================================
 
     isRunning() {
 
         return this.running;
+
+    }
+
+    // =====================================
+    // Sleep
+    // =====================================
+
+    sleep(ms) {
+
+        return new Promise(resolve =>
+
+            setTimeout(resolve, ms)
+
+        );
 
     }
 
