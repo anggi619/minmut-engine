@@ -1,64 +1,72 @@
 /**
  * -----------------------------------------
  * MINMUT Brain Search Engine
- * Version : 2.0
+ * Version : 3.0
+ * File    : brain-search.js
+ * Author  : Anggi Pratama & OpenAI
  * -----------------------------------------
  */
 
 class MinmutBrainSearch {
 
-    constructor(){
-
-        this.modules = [
-
-            "promkes",
-            "ckg",
-            "tb",
-            "malaria",
-            "gizi",
-            "kia",
-            "imunisasi",
-            "posyandu"
-
-        ];
+    constructor() {
 
     }
 
-    normalize(text){
+    normalize(text) {
 
         return text
             .toLowerCase()
-            .replace(/[^\w\s]/g,"")
+            .replace(/[^\w\s]/g, "")
             .trim();
 
     }
 
-    async ask(question){
+    async findModule(question) {
+
+        const modules = await Brain.getModules();
+
+        if (!modules) {
+
+            return null;
+
+        }
 
         question = this.normalize(question);
 
-        const intent = Intent.detect(question);
+        for (const module of modules) {
 
-        for(const module of this.modules){
+            // id
+            if (question.includes(module.id.toLowerCase())) {
 
-            if(question.includes(module)){
+                return module.id;
 
-                switch(intent){
+            }
 
-                    case "faq":
-                        return await Brain.getFAQ(module);
+            // name
+            if (
+                module.name &&
+                question.includes(module.name.toLowerCase())
+            ) {
 
-                    case "services":
-                        return await Brain.getServices(module);
+                return module.id;
 
-                    case "healthtips":
-                        return await Brain.getHealthTips(module);
+            }
 
-                    case "news":
-                        return await Brain.getNews(module);
+            // keywords
+            if (module.keywords) {
 
-                    default:
-                        return await Brain.getInfo(module);
+                for (const keyword of module.keywords) {
+
+                    if (
+                        question.includes(
+                            keyword.toLowerCase()
+                        )
+                    ) {
+
+                        return module.id;
+
+                    }
 
                 }
 
@@ -67,6 +75,46 @@ class MinmutBrainSearch {
         }
 
         return null;
+
+    }
+
+    async ask(question) {
+
+        question = this.normalize(question);
+
+        const module = await this.findModule(question);
+
+        if (!module) {
+
+            return null;
+
+        }
+
+        const intent = Intent.detect(question);
+
+        switch (intent) {
+
+            case "faq":
+
+                return await Brain.getFAQ(module);
+
+            case "services":
+
+                return await Brain.getServices(module);
+
+            case "healthtips":
+
+                return await Brain.getHealthTips(module);
+
+            case "news":
+
+                return await Brain.getNews(module);
+
+            default:
+
+                return await Brain.getInfo(module);
+
+        }
 
     }
 
