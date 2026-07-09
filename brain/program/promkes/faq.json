@@ -1,0 +1,16 @@
+{
+    "faq": [
+        {
+            "question": "Apa itu Promosi Kesehatan?",
+            "answer": "Promosi Kesehatan adalah upaya meningkatkan kemampuan masyarakat agar mampu hidup sehat melalui edukasi, pemberdayaan, advokasi dan kemitraan."
+        },
+        {
+            "question": "Apa tugas Promkes di Puskesmas?",
+            "answer": "Melaksanakan penyuluhan kesehatan, komunikasi, informasi dan edukasi (KIE), pemberdayaan masyarakat, pembinaan PHBS, GERMAS, advokasi dan kemitraan."
+        },
+        {
+            "question": "Siapa sasaran Promkes?",
+            "answer": "Seluruh masyarakat, mulai dari individu, keluarga, sekolah, tempat kerja hingga komunitas."
+        }
+    ]
+}
