@@ -1,21 +1,50 @@
 {
-    "services":[
+    "services": [
 
-        "Rawat Jalan",
+        {
+            "name": "Rawat Jalan",
+            "description": "Pelayanan pemeriksaan dan pengobatan pasien rawat jalan."
+        },
 
-        "UGD",
+        {
+            "name": "Unit Gawat Darurat (UGD)",
+            "description": "Pelayanan kegawatdaruratan selama jam operasional."
+        },
 
-        "Posyandu",
+        {
+            "name": "Kesehatan Ibu dan Anak (KIA)",
+            "description": "Pelayanan ibu hamil, ibu nifas, bayi, balita dan keluarga berencana."
+        },
 
-        "Imunisasi",
+        {
+            "name": "Imunisasi",
+            "description": "Pelayanan imunisasi dasar dan lanjutan sesuai jadwal."
+        },
 
-        "Kesehatan Jiwa",
+        {
+            "name": "Posyandu",
+            "description": "Pelayanan kesehatan balita, ibu hamil, lansia dan remaja melalui Posyandu."
+        },
 
-        "KIA",
+        {
+            "name": "Laboratorium",
+            "description": "Pemeriksaan laboratorium sesuai indikasi medis."
+        },
 
-        "Laboratorium",
+        {
+            "name": "Farmasi",
+            "description": "Pelayanan obat dan konsultasi penggunaan obat."
+        },
 
-        "Farmasi"
+        {
+            "name": "Kesehatan Jiwa",
+            "description": "Pelayanan skrining, konsultasi dan pendampingan kesehatan jiwa."
+        },
+
+        {
+            "name": "Promosi Kesehatan",
+            "description": "Edukasi kesehatan, penyuluhan, PHBS, GERMAS, media promosi kesehatan, pemberdayaan masyarakat, advokasi dan komunikasi perubahan perilaku."
+        }
 
     ]
 }
