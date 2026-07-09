@@ -118,6 +118,16 @@ class MinmutAPI {
 
     }
 
+    async conversation(messages){
+
+    if(this.engine){
+
+        await this.engine.conversation.play(messages);
+
+    }
+
+}
+
     // ==========================
     // Avatar Animation
     // ==========================
