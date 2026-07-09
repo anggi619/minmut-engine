@@ -1,7 +1,7 @@
 /**
  * -----------------------------------------
  * MINMUT Response Engine
- * Version : 1.0
+ * Version : 2.0
  * -----------------------------------------
  */
 
@@ -9,54 +9,175 @@ class MinmutResponse {
 
     build(data){
 
-        if(!data) return "Maaf, saya belum menemukan informasi tersebut.";
+        if(!data){
 
+            return "Maaf, saya belum menemukan informasi tersebut.";
+
+        }
+
+        // ==========================
         // FAQ
+        // ==========================
+
         if(data.faq){
 
             return data.faq[0].answer;
 
         }
 
-        // Info
+        // ==========================
+        // INFO
+        // ==========================
+
         if(data.description){
 
-            return data.description;
+            let text = "";
+
+            if(data.name){
+
+                text += data.name + "\n\n";
+
+            }
+
+            text += data.description;
+
+            return text;
 
         }
 
-        // Services
+        // ==========================
+        // SERVICES
+        // ==========================
+
         if(data.services){
 
-            return data.services
-                .map(x => "• " + x.name)
-                .join("\n");
+            let text =
+
+                "Layanan yang tersedia meliputi:\n\n";
+
+            data.services.forEach(service=>{
+
+                text += "• " + service.name;
+
+                if(service.description){
+
+                    text +=
+
+                        "\n   " + service.description;
+
+                }
+
+                text += "\n\n";
+
+            });
+
+            return text;
 
         }
 
-        // Health Tips
+        // ==========================
+        // HEALTH TIPS
+        // ==========================
+
         if(data.tips){
 
-            return data.tips.join("\n");
+            let text =
+
+                "Berikut beberapa tips kesehatan:\n\n";
+
+            data.tips.forEach(tip=>{
+
+                text += tip + "\n\n";
+
+            });
+
+            return text;
 
         }
 
-        // News
+        // ==========================
+        // NEWS
+        // ==========================
+
         if(data.news){
 
             if(data.news.length===0){
 
-                return "Belum ada berita terbaru.";
+                return "Saat ini belum ada berita terbaru.";
 
             }
 
-            return data.news
-                .map(x=>x.title)
-                .join("\n");
+            let text =
+
+                "Berita terbaru:\n\n";
+
+            data.news.forEach(news=>{
+
+                text +=
+
+                    "• " + news.title + "\n";
+
+            });
+
+            return text;
 
         }
 
-        return JSON.stringify(data,null,2);
+        // ==========================
+        // POSTERS
+        // ==========================
+
+        if(data.posters){
+
+            if(data.posters.length===0){
+
+                return
+
+                "Belum ada poster edukasi.";
+
+            }
+
+            let text="Poster Edukasi:\n\n";
+
+            data.posters.forEach(p=>{
+
+                text+="• "+p.title+"\n";
+
+            });
+
+            return text;
+
+        }
+
+        // ==========================
+        // VIDEOS
+        // ==========================
+
+        if(data.videos){
+
+            if(data.videos.length===0){
+
+                return
+
+                "Belum ada video edukasi.";
+
+            }
+
+            let text="Video Edukasi:\n\n";
+
+            data.videos.forEach(v=>{
+
+                text+="• "+v.title+"\n";
+
+            });
+
+            return text;
+
+        }
+
+        return
+
+        "Maaf, saya belum bisa menjelaskan informasi tersebut.";
 
     }
 
