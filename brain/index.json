@@ -1,0 +1,47 @@
+{
+    "version": "1.0",
+
+    "modules": [
+
+        {
+            "id": "promkes",
+            "name": "Promosi Kesehatan"
+        },
+
+        {
+            "id": "ckg",
+            "name": "Cek Kesehatan Gratis"
+        },
+
+        {
+            "id": "tb",
+            "name": "Tuberkulosis"
+        },
+
+        {
+            "id": "malaria",
+            "name": "Malaria"
+        },
+
+        {
+            "id": "gizi",
+            "name": "Gizi"
+        },
+
+        {
+            "id": "kia",
+            "name": "Kesehatan Ibu dan Anak"
+        },
+
+        {
+            "id": "imunisasi",
+            "name": "Imunisasi"
+        },
+
+        {
+            "id": "posyandu",
+            "name": "Posyandu"
+        }
+
+    ]
+}
