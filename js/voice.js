@@ -1,3 +1,12 @@
+/**
+ * -----------------------------------------
+ * MINMUT Engine
+ * Version : 4.0
+ * File    : voice.js
+ * Author  : Anggi Pratama & OpenAI
+ * -----------------------------------------
+ */
+
 class MinmutVoice {
 
     constructor() {
@@ -5,12 +14,18 @@ class MinmutVoice {
         this.voice = null;
 
         speechSynthesis.onvoiceschanged = () => {
+
             this.loadVoice();
+
         };
 
         this.loadVoice();
 
     }
+
+    // =====================================
+    // Load Voice Browser
+    // =====================================
 
     loadVoice() {
 
@@ -31,65 +46,67 @@ class MinmutVoice {
 
             null;
 
-    }
+        if (this.voice) {
 
-    async speak(text){
+            Logger.info("Voice Loaded : " + this.voice.name);
 
-    return new Promise(resolve=>{
+        } else {
 
-        speechSynthesis.cancel();
-
-        const u = new SpeechSynthesisUtterance(text);
-
-        u.lang="id-ID";
-
-        u.rate=1;
-
-        u.pitch=1.15;
-
-        u.volume=1;
-
-        if(this.voice){
-
-            u.voice=this.voice;
+            Logger.warn("Voice Browser tidak ditemukan.");
 
         }
 
-        u.onstart=()=>{
+    }
 
-            Minmut.engine.talk.start();
+    // =====================================
+    // Speak
+    // =====================================
 
-        };
+    async speak(text) {
 
-        u.onend=()=>{
+        return new Promise(resolve => {
 
-            Minmut.engine.talk.stop();
+            const utterance = new SpeechSynthesisUtterance(text);
 
-            Minmut.play("idle");
+            utterance.lang = "id-ID";
 
-            resolve();
+            utterance.rate = 1;
 
-        };
+            utterance.pitch = 1.15;
 
-        u.onerror=()=>{
+            utterance.volume = 1;
 
-            Minmut.engine.talk.stop();
+            if (this.voice) {
 
-            resolve();
+                utterance.voice = this.voice;
 
-        };
+            }
 
-        speechSynthesis.speak(u);
+            // =============================
+            // START
+            // =============================
 
-    });
+            utterance.onstart = () => {
 
-}
-            // Saat selesai bicara
-            u.onend = ()=>{
+                Logger.info("Voice Start");
 
-                console.log("Voice End");
+                if (Minmut.engine?.talk) {
 
-                if(Minmut.engine?.talk){
+                    Minmut.engine.talk.start();
+
+                }
+
+            };
+
+            // =============================
+            // END
+            // =============================
+
+            utterance.onend = () => {
+
+                Logger.info("Voice End");
+
+                if (Minmut.engine?.talk) {
 
                     Minmut.engine.talk.stop();
 
@@ -101,23 +118,59 @@ class MinmutVoice {
 
             };
 
-            u.onerror = (e)=>{
+            // =============================
+            // ERROR
+            // =============================
 
-                console.error("Voice Error", e);
+            utterance.onerror = (e) => {
 
-                if(Minmut.engine?.talk){
+                Logger.error("Voice Error : " + e.error);
+
+                if (Minmut.engine?.talk) {
 
                     Minmut.engine.talk.stop();
 
                 }
 
+                Minmut.play("idle");
+
                 resolve();
 
             };
 
-            speechSynthesis.speak(u);
+            speechSynthesis.speak(utterance);
 
         });
+
+    }
+
+    // =====================================
+    // Stop Voice
+    // =====================================
+
+    stop() {
+
+        speechSynthesis.cancel();
+
+        if (Minmut.engine?.talk) {
+
+            Minmut.engine.talk.stop();
+
+        }
+
+        Minmut.play("idle");
+
+        Logger.info("Voice Stopped");
+
+    }
+
+    // =====================================
+    // Status
+    // =====================================
+
+    isSpeaking() {
+
+        return speechSynthesis.speaking;
 
     }
 
