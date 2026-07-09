@@ -84,17 +84,15 @@ class MinmutAPI {
     // Voice
     // ==========================
 
-    async speak(text) {
+    async speak(text){
 
-        this.say(text);
+    this.say(text);
 
-        if (this.engine) {
+    if(!this.engine) return;
 
-            await this.engine.voice.speak(text);
+    this.engine.voiceQueue.add(text);
 
-        }
-
-    }
+}
 
     async conversation(messages){
 
