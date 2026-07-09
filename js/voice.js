@@ -35,36 +35,55 @@ class MinmutVoice {
 
     async speak(text){
 
-        return new Promise(resolve=>{
+    return new Promise(resolve=>{
 
-            speechSynthesis.cancel();
+        speechSynthesis.cancel();
 
-            const u = new SpeechSynthesisUtterance(text);
+        const u = new SpeechSynthesisUtterance(text);
 
-            u.lang = "id-ID";
-            u.rate = 1;
-            u.pitch = 1.15;
-            u.volume = 1;
+        u.lang="id-ID";
 
-            if(this.voice){
+        u.rate=1;
 
-                u.voice = this.voice;
+        u.pitch=1.15;
 
-            }
+        u.volume=1;
 
-            // Saat mulai bicara
-            u.onstart = ()=>{
+        if(this.voice){
 
-                console.log("Voice Start");
+            u.voice=this.voice;
 
-                if(Minmut.engine?.talk){
+        }
 
-                    Minmut.engine.talk.start();
+        u.onstart=()=>{
 
-                }
+            Minmut.engine.talk.start();
 
-            };
+        };
 
+        u.onend=()=>{
+
+            Minmut.engine.talk.stop();
+
+            Minmut.play("idle");
+
+            resolve();
+
+        };
+
+        u.onerror=()=>{
+
+            Minmut.engine.talk.stop();
+
+            resolve();
+
+        };
+
+        speechSynthesis.speak(u);
+
+    });
+
+}
             // Saat selesai bicara
             u.onend = ()=>{
 
