@@ -1,0 +1,44 @@
+{
+    "id": "promkes",
+
+    "name": "Promosi Kesehatan",
+
+    "shortName": "Promkes",
+
+    "description": "Promosi Kesehatan adalah upaya meningkatkan kemampuan masyarakat agar mampu hidup sehat melalui edukasi, pemberdayaan, advokasi dan komunikasi perubahan perilaku.",
+
+    "activities": [
+
+        "Penyuluhan Kesehatan",
+
+        "Komunikasi, Informasi dan Edukasi (KIE)",
+
+        "Pemberdayaan Masyarakat",
+
+        "Pembinaan PHBS",
+
+        "GERMAS",
+
+        "Advokasi",
+
+        "Kemitraan",
+
+        "Media Promosi Kesehatan"
+
+    ],
+
+    "targets":[
+
+        "Individu",
+
+        "Keluarga",
+
+        "Sekolah",
+
+        "Tempat Kerja",
+
+        "Masyarakat"
+
+    ]
+
+}
