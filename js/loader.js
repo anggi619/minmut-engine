@@ -55,8 +55,6 @@
 
     await loadScript(base+"js/behavior-manager.js");
 
-    await loadScript(base+"js/welcome-manager.js");
-
     await loadScript(base+"js/animation-queue.js");
 
     await loadScript(base+"js/animation-registry.js");
