@@ -1,7 +1,7 @@
 /**
  * -----------------------------------------
  * MINMUT Engine
- * Version : 3.2 Stable
+ * Version : 3.3
  * File    : behavior-manager.js
  * Author  : Anggi Pratama & OpenAI
  * -----------------------------------------
@@ -19,11 +19,17 @@ class MinmutBehaviorManager {
 
     }
 
+    // =====================================
+    // Engine
+    // =====================================
+
     start() {
 
         if (this.running) return;
 
         this.running = true;
+
+        Logger.info("Behavior Started");
 
         this.loop();
 
@@ -32,6 +38,8 @@ class MinmutBehaviorManager {
     stop() {
 
         this.running = false;
+
+        Logger.info("Behavior Stopped");
 
     }
 
@@ -47,6 +55,10 @@ class MinmutBehaviorManager {
 
     }
 
+    // =====================================
+    // Main Loop
+    // =====================================
+
     async loop() {
 
         // Welcome hanya sekali
@@ -58,22 +70,26 @@ class MinmutBehaviorManager {
 
         }
 
-        // Idle Behavior
+        // Behavior utama
         while (this.running) {
 
-            if (this.enabled) {
+            if (!this.enabled) {
 
-                await this.idle();
+                await this.sleep(1000);
+
+                continue;
 
             }
+
+            await this.idle();
 
         }
 
     }
 
-    // ======================================
+    // =====================================
     // Welcome
-    // ======================================
+    // =====================================
 
     async welcome() {
 
@@ -120,13 +136,12 @@ klik saya kapan saja 😊`,
 
     }
 
-    // ======================================
-    // Idle Behavior
-    // ======================================
+    // =====================================
+    // Idle
+    // =====================================
 
     async idle() {
 
-        // Blink acak
         await this.sleep(
 
             this.random(8000,15000)
@@ -135,24 +150,91 @@ klik saya kapan saja 😊`,
 
         if(!this.running || !this.enabled) return;
 
-        Minmut.play("blink");
+        await this.blinkBehavior();
 
-        // Thinking acak
         await this.sleep(
 
-            this.random(20000,40000)
+            this.random(10000,20000)
 
         );
 
         if(!this.running || !this.enabled) return;
 
+        await this.thinkingBehavior();
+
+        await this.sleep(
+
+            this.random(15000,25000)
+
+        );
+
+        if(!this.running || !this.enabled) return;
+
+        await this.happyBehavior();
+
+    }
+
+    // =====================================
+    // Blink
+    // =====================================
+
+    async blinkBehavior(){
+
+        Logger.info("Behavior : Blink");
+
+        Minmut.play("blink");
+
+    }
+
+    // =====================================
+    // Thinking
+    // =====================================
+
+    async thinkingBehavior(){
+
+        Logger.info("Behavior : Thinking");
+
         Minmut.play("thinking");
 
     }
 
-    // ======================================
+    // =====================================
+    // Happy
+    // =====================================
+
+    async happyBehavior(){
+
+        Logger.info("Behavior : Happy");
+
+        Minmut.play("happy");
+
+    }
+
+    // =====================================
+    // Health Tips
+    // (Engine 3.3)
+    // =====================================
+
+    async healthTipsBehavior(){
+
+        // Akan kita isi berikutnya
+
+    }
+
+    // =====================================
+    // Greeting
+    // (Engine 3.3)
+    // =====================================
+
+    async greetingBehavior(){
+
+        // Akan kita isi berikutnya
+
+    }
+
+    // =====================================
     // Utility
-    // ======================================
+    // =====================================
 
     random(min,max){
 
