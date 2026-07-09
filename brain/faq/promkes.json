@@ -1,0 +1,29 @@
+{
+    "questions":[
+
+        {
+
+            "question":"Apa itu Promosi Kesehatan?",
+
+            "answer":"Promosi Kesehatan adalah upaya meningkatkan kemampuan masyarakat untuk hidup sehat melalui edukasi, pemberdayaan dan perubahan perilaku."
+
+        },
+
+        {
+
+            "question":"Apa tugas Promkes?",
+
+            "answer":"Memberikan penyuluhan, edukasi kesehatan, pemberdayaan masyarakat dan mendukung program kesehatan di wilayah kerja Puskesmas."
+
+        },
+
+        {
+
+            "question":"Apakah Promkes hanya memberikan penyuluhan?",
+
+            "answer":"Tidak. Promkes juga melakukan advokasi, kemitraan, pemberdayaan masyarakat, pembinaan PHBS, GERMAS, media promosi kesehatan dan kegiatan komunikasi perubahan perilaku."
+
+        }
+
+    ]
+}
