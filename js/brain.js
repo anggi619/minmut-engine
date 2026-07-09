@@ -1,7 +1,7 @@
 /**
  * -----------------------------------------
  * MINMUT Brain Engine
- * Version : 1.1
+ * Version : 1.2
  * -----------------------------------------
  */
 
@@ -43,7 +43,7 @@ class MinmutBrain {
 
         }
 
-        catch(e){
+        catch (e) {
 
             Logger.error(e.message);
 
@@ -53,69 +53,107 @@ class MinmutBrain {
 
     }
 
-    async getInfo(program){
+    // ==========================
+    // Programs
+    // ==========================
+
+    async getInfo(module) {
 
         return await this.load(
-
-            `program/${program}/info.json`
-
+            `programs/${module}/info.json`
         );
 
     }
 
-    async getFAQ(program){
+    async getFAQ(module) {
 
         return await this.load(
-
-            `program/${program}/faq.json`
-
+            `programs/${module}/faq.json`
         );
 
     }
 
-    async getServices(program){
+    async getServices(module) {
 
         return await this.load(
-
-            `program/${program}/services.json`
-
+            `programs/${module}/services.json`
         );
 
     }
 
-    async getHealthTips(program){
+    async getHealthTips(module) {
 
         return await this.load(
-
-            `program/${program}/healthtips.json`
-
+            `programs/${module}/healthtips.json`
         );
 
     }
 
-    async getNews(program){
+    async getNews(module) {
 
         return await this.load(
-
-            `program/${program}/news.json`
-
+            `programs/${module}/news.json`
         );
 
     }
 
-    async getAvatar(program){
+    async getPosters(module) {
 
         return await this.load(
-
-            `program/${program}/avatar.json`
-
+            `programs/${module}/posters.json`
         );
 
     }
 
-    clearCache(){
+    async getVideos(module) {
+
+        return await this.load(
+            `programs/${module}/videos.json`
+        );
+
+    }
+
+    async getAvatar(module) {
+
+        return await this.load(
+            `programs/${module}/avatar.json`
+        );
+
+    }
+
+    // ==========================
+    // System
+    // ==========================
+
+    async getSystem(file) {
+
+        return await this.load(
+            `system/${file}.json`
+        );
+
+    }
+
+    // ==========================
+    // Profile
+    // ==========================
+
+    async getProfile(file) {
+
+        return await this.load(
+            `profile/${file}.json`
+        );
+
+    }
+
+    // ==========================
+    // Cache
+    // ==========================
+
+    clearCache() {
 
         this.cache = {};
+
+        Logger.info("Brain Cache Cleared");
 
     }
 
