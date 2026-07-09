@@ -41,6 +41,8 @@
 
     await loadScript(base+"js/brain.js");
 
+    await loadScript(base+"js/brain-search.js");
+
     await loadScript(base+"js/version.js");
 
     await loadScript(base+"js/scheduler.js");
