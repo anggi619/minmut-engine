@@ -59,6 +59,8 @@
 
     await loadScript(base+"js/voice-manager.js");
 
+    await loadScript(base+"js/voice-queue.js");
+
     await loadScript(base+"js/talk-loop.js");
 
     await loadScript(base+"js/behavior-manager.js");
