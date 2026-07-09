@@ -1,1 +1,24 @@
-
+{
+    "welcome": [
+        {
+            "text": "Halo! 👋",
+            "animation": "wave",
+            "duration": 2000
+        },
+        {
+            "text": "Saya Minmut.\n\nAsisten Virtual\nPuskesmas Sungai Manau.",
+            "animation": "happy",
+            "duration": 3000
+        },
+        {
+            "text": "Saya siap membantu\nmenemukan informasi\nlayanan kesehatan.",
+            "animation": "thinking",
+            "duration": 3500
+        },
+        {
+            "text": "💚\n\nSilakan lanjut membaca website ini.\n\nKalau butuh bantuan,\nklik saya kapan saja 😊",
+            "animation": "happy",
+            "duration": 5000
+        }
+    ]
+}
