@@ -80,28 +80,6 @@ class MinmutAPI {
 
     }
 
-    async sayQueue(messages) {
-
-        for (const message of messages) {
-
-            if (message.animation) {
-
-                this.play(message.animation);
-
-            }
-
-            await this.sayFor(
-
-                message.text,
-
-                message.duration ?? 2000
-
-            );
-
-        }
-
-    }
-
     // ==========================
     // Voice
     // ==========================
