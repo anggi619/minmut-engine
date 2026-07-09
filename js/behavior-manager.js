@@ -1,6 +1,6 @@
 class MinmutBehaviorManager {
 
-    constructor(){
+    constructor() {
 
         this.running = false;
 
@@ -10,9 +10,9 @@ class MinmutBehaviorManager {
 
     }
 
-    start(){
+    start() {
 
-        if(this.running) return;
+        if (this.running) return;
 
         this.running = true;
 
@@ -20,28 +20,28 @@ class MinmutBehaviorManager {
 
     }
 
-    stop(){
+    stop() {
 
         this.running = false;
 
     }
 
-    enable(){
+    enable() {
 
         this.enabled = true;
 
     }
 
-    disable(){
+    disable() {
 
         this.enabled = false;
 
     }
 
-    async loop(){
+    async loop() {
 
         // Welcome hanya sekali
-        if(!this.welcomed){
+        if (!this.welcomed) {
 
             await this.welcome();
 
@@ -49,60 +49,135 @@ class MinmutBehaviorManager {
 
         }
 
-        while(this.running){
+        // Behavior utama
+        while (this.running) {
 
-            if(this.enabled){
+            if (this.enabled) {
 
                 await this.idle();
 
             }
 
-            await this.sleep(1000);
-
         }
 
     }
 
-    async welcome(){
+    // ==========================
+    // Welcome
+    // ==========================
 
-        Minmut.play("wave");
+    async welcome() {
 
-        await this.sleep(800);
+        await Minmut.sayQueue([
 
-        Minmut.say("Halo 👋");
+            {
 
-        await this.sleep(2000);
+                text: "Halo! 👋",
 
-        Minmut.say("Saya Minmut.");
+                animation: "wave",
 
-        await this.sleep(2000);
+                duration: 2000
 
-        Minmut.say("Asisten Virtual\nPuskesmas Sungai Manau.");
+            },
 
-        await this.sleep(2500);
+            {
 
-        Minmut.say("Ada yang bisa saya bantu?\nKlik saya kapan saja 😊");
+                text:
+`Saya Minmut.
 
-        await this.sleep(5000);
+Asisten Virtual
+Puskesmas Sungai Manau.`,
 
-        const bubble = document.getElementById("minmut-bubble");
+                animation: "happy",
 
-        if(bubble){
+                duration: 3000
 
-            bubble.classList.remove("show");
+            },
 
-        }
+            {
+
+                text:
+`Saya siap membantu
+menemukan informasi
+layanan kesehatan.`,
+
+                animation: "thinking",
+
+                duration: 3500
+
+            },
+
+            {
+
+                text:
+`💚
+
+Silakan lanjut membaca website ini.
+
+Kalau butuh bantuan,
+klik saya kapan saja 😊`,
+
+                animation: "happy",
+
+                duration: 5000
+
+            }
+
+        ]);
 
     }
 
-    async idle(){
+    // ==========================
+    // Idle Behavior
+    // ==========================
 
-        // Akan kita isi pada Engine 3.3
+    async idle() {
+
+        // Tunggu acak 8 - 15 detik
+        await this.sleep(
+
+            this.random(8000, 15000)
+
+        );
+
+        if (!this.running || !this.enabled) return;
+
+        Minmut.play("blink");
+
+        // Tunggu acak 20 - 40 detik
+        await this.sleep(
+
+            this.random(20000, 40000)
+
+        );
+
+        if (!this.running || !this.enabled) return;
+
+        Minmut.play("thinking");
+
     }
 
-    sleep(ms){
+    // ==========================
+    // Utility
+    // ==========================
 
-        return new Promise(resolve => setTimeout(resolve, ms));
+    random(min, max) {
+
+        return Math.floor(
+
+            Math.random() * (max - min + 1)
+
+        ) + min;
+
+    }
+
+    sleep(ms) {
+
+        return new Promise(resolve =>
+
+            setTimeout(resolve, ms)
+
+        );
 
     }
 
