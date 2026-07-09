@@ -16,7 +16,7 @@ class MinmutAPI {
 
         const m = document.getElementById("minmut");
 
-        if(m){
+        if (m) {
 
             m.style.display = "block";
 
@@ -28,7 +28,7 @@ class MinmutAPI {
 
         const m = document.getElementById("minmut");
 
-        if(m){
+        if (m) {
 
             m.style.display = "none";
 
@@ -36,11 +36,15 @@ class MinmutAPI {
 
     }
 
+    // ==========================
+    // Bubble
+    // ==========================
+
     say(text) {
 
         const bubble = document.getElementById("minmut-bubble");
 
-        if(!bubble) return;
+        if (!bubble) return;
 
         bubble.innerHTML = text;
 
@@ -48,11 +52,65 @@ class MinmutAPI {
 
     }
 
-    async speak(text){
+    hideBubble() {
+
+        const bubble = document.getElementById("minmut-bubble");
+
+        if (!bubble) return;
+
+        bubble.classList.remove("show");
+
+    }
+
+    async sayFor(text, duration = 2000) {
 
         this.say(text);
 
-        if(this.engine){
+        return new Promise(resolve => {
+
+            setTimeout(() => {
+
+                this.hideBubble();
+
+                resolve();
+
+            }, duration);
+
+        });
+
+    }
+
+    async sayQueue(messages) {
+
+        for (const message of messages) {
+
+            if (message.animation) {
+
+                this.play(message.animation);
+
+            }
+
+            await this.sayFor(
+
+                message.text,
+
+                message.duration ?? 2000
+
+            );
+
+        }
+
+    }
+
+    // ==========================
+    // Voice
+    // ==========================
+
+    async speak(text) {
+
+        this.say(text);
+
+        if (this.engine) {
 
             await this.engine.voice.speak(text);
 
@@ -60,13 +118,27 @@ class MinmutAPI {
 
     }
 
-    play(name){
+    // ==========================
+    // Avatar Animation
+    // ==========================
 
-        if(this.engine?.avatar){
+    play(name) {
+
+        if (this.engine?.avatar) {
 
             this.engine.avatar.play(name);
 
         }
+
+    }
+
+    // ==========================
+    // Helper
+    // ==========================
+
+    getVersion() {
+
+        return window.MINMUT_VERSION ?? null;
 
     }
 
