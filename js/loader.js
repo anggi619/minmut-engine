@@ -35,6 +35,14 @@
 
     await loadScript(base+"js/api.js");
 
+    await loadScript(base+"js/logger.js");
+
+    await loadScript(base+"js/version.js");
+
+    await loadScript(base+"js/scheduler.js");
+
+    await loadScript(base+"js/event-manager.js");
+
     await loadScript(base+"js/voice.js");
 
     await loadScript(base+"js/openai-voice.js");
