@@ -39,6 +39,8 @@
 
     await loadScript(base+"js/logger.js");
 
+    await loadScript(base+"js/brain.js");
+
     await loadScript(base+"js/version.js");
 
     await loadScript(base+"js/scheduler.js");
