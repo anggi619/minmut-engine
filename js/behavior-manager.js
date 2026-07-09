@@ -1,3 +1,12 @@
+/**
+ * -----------------------------------------
+ * MINMUT Engine
+ * Version : 3.2 Stable
+ * File    : behavior-manager.js
+ * Author  : Anggi Pratama & OpenAI
+ * -----------------------------------------
+ */
+
 class MinmutBehaviorManager {
 
     constructor() {
@@ -49,7 +58,7 @@ class MinmutBehaviorManager {
 
         }
 
-        // Behavior utama
+        // Idle Behavior
         while (this.running) {
 
             if (this.enabled) {
@@ -62,53 +71,40 @@ class MinmutBehaviorManager {
 
     }
 
-    // ==========================
+    // ======================================
     // Welcome
-    // ==========================
+    // ======================================
 
     async welcome() {
 
-        await Minmut.sayQueue([
+        await Minmut.conversation([
 
             {
-
                 text: "Halo! 👋",
-
                 animation: "wave",
-
                 duration: 2000
-
             },
 
             {
-
                 text:
 `Saya Minmut.
 
 Asisten Virtual
 Puskesmas Sungai Manau.`,
-
                 animation: "happy",
-
                 duration: 3000
-
             },
 
             {
-
                 text:
 `Saya siap membantu
 menemukan informasi
 layanan kesehatan.`,
-
                 animation: "thinking",
-
                 duration: 3500
-
             },
 
             {
-
                 text:
 `💚
 
@@ -116,68 +112,61 @@ Silakan lanjut membaca website ini.
 
 Kalau butuh bantuan,
 klik saya kapan saja 😊`,
-
                 animation: "happy",
-
                 duration: 5000
-
             }
 
         ]);
 
     }
 
-    // ==========================
+    // ======================================
     // Idle Behavior
-    // ==========================
+    // ======================================
 
     async idle() {
 
-        // Tunggu acak 8 - 15 detik
+        // Blink acak
         await this.sleep(
 
-            this.random(8000, 15000)
+            this.random(8000,15000)
 
         );
 
-        if (!this.running || !this.enabled) return;
+        if(!this.running || !this.enabled) return;
 
         Minmut.play("blink");
 
-        // Tunggu acak 20 - 40 detik
+        // Thinking acak
         await this.sleep(
 
-            this.random(20000, 40000)
+            this.random(20000,40000)
 
         );
 
-        if (!this.running || !this.enabled) return;
+        if(!this.running || !this.enabled) return;
 
         Minmut.play("thinking");
 
     }
 
-    // ==========================
+    // ======================================
     // Utility
-    // ==========================
+    // ======================================
 
-    random(min, max) {
+    random(min,max){
 
         return Math.floor(
 
-            Math.random() * (max - min + 1)
+            Math.random()*(max-min+1)
 
-        ) + min;
+        )+min;
 
     }
 
-    sleep(ms) {
+    sleep(ms){
 
-        return new Promise(resolve =>
-
-            setTimeout(resolve, ms)
-
-        );
+        return new Promise(resolve=>setTimeout(resolve,ms));
 
     }
 
