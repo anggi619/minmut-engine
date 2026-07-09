@@ -1,0 +1,31 @@
+{
+    "morning": [
+
+        "🌞 Selamat pagi.\nSemoga harimu menyenangkan 😊",
+
+        "🌞 Selamat pagi.\nSemoga sehat selalu.",
+
+        "🌞 Jangan lupa sarapan ya 😊"
+
+    ],
+
+    "afternoon": [
+
+        "☀️ Selamat siang.\nJangan lupa makan siang.",
+
+        "☀️ Semoga aktivitasmu lancar."
+
+    ],
+
+    "evening": [
+
+        "🌤 Selamat sore.\nSemoga sehat selalu."
+
+    ],
+
+    "night": [
+
+        "🌙 Selamat malam.\nIstirahat yang cukup ya."
+
+    ]
+}
