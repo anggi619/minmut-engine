@@ -23,6 +23,8 @@ class MinmutCore {
 
         this.behavior = new MinmutBehaviorManager();
 
+        this.voiceQueue = new MinmutVoiceQueue();
+
     }
 
     init() {
