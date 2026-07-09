@@ -1,13 +1,15 @@
 /**
  * -----------------------------------------
- * MINMUT Voice Queue
- * Version : 1.0
+ * MINMUT Engine
+ * Version : 4.1.0
+ * File    : voice-queue.js
+ * Author  : Anggi Pratama & OpenAI
  * -----------------------------------------
  */
 
 class MinmutVoiceQueue {
 
-    constructor(){
+    constructor() {
 
         this.queue = [];
 
@@ -15,25 +17,81 @@ class MinmutVoiceQueue {
 
     }
 
-    add(text){
+    // =====================================
+    // Tambah ke Queue (tanpa menunggu)
+    // =====================================
 
-        this.queue.push(text);
+    add(text) {
+
+        this.queue.push({
+
+            text,
+
+            resolve: null
+
+        });
 
         this.run();
 
     }
 
-    async run(){
+    // =====================================
+    // Tambah ke Queue (menunggu selesai)
+    // =====================================
 
-        if(this.running) return;
+    addAndWait(text) {
+
+        return new Promise(resolve => {
+
+            this.queue.push({
+
+                text,
+
+                resolve
+
+            });
+
+            this.run();
+
+        });
+
+    }
+
+    // =====================================
+    // Jalankan Queue
+    // =====================================
+
+    async run() {
+
+        if (this.running) return;
 
         this.running = true;
 
-        while(this.queue.length>0){
+        while (this.queue.length > 0) {
 
-            const text = this.queue.shift();
+            const item = this.queue.shift();
 
-            await Minmut.engine.voice.speak(text);
+            try {
+
+                await Minmut.engine.voice.speak(
+
+                    item.text
+
+                );
+
+            }
+
+            catch (e) {
+
+                console.error(e);
+
+            }
+
+            if (item.resolve) {
+
+                item.resolve();
+
+            }
 
         }
 
@@ -41,11 +99,29 @@ class MinmutVoiceQueue {
 
     }
 
-    clear(){
+    // =====================================
+    // Bersihkan Queue
+    // =====================================
+
+    clear() {
 
         this.queue = [];
 
-        speechSynthesis.cancel();
+        if (Minmut.engine?.voice) {
+
+            Minmut.engine.voice.stop();
+
+        }
+
+    }
+
+    // =====================================
+    // Status
+    // =====================================
+
+    isRunning() {
+
+        return this.running;
 
     }
 
