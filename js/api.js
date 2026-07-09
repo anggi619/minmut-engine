@@ -106,6 +106,16 @@ class MinmutAPI {
 
 }
 
+async ask(question){
+
+    const data = await BrainSearch.ask(question);
+
+    const text = Response.build(data);
+
+    await this.speak(text);
+
+}
+
     // ==========================
     // Avatar Animation
     // ==========================
