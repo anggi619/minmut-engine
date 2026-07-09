@@ -1,16 +1,15 @@
 /**
  * -----------------------------------------
  * MINMUT Brain Search Engine
- * Version : 1.0
- * Author  : Anggi Pratama & OpenAI
+ * Version : 2.0
  * -----------------------------------------
  */
 
 class MinmutBrainSearch {
 
-    constructor() {
+    constructor(){
 
-        this.programs = [
+        this.modules = [
 
             "promkes",
             "ckg",
@@ -38,13 +37,30 @@ class MinmutBrainSearch {
 
         question = this.normalize(question);
 
-        // Cari berdasarkan nama program
+        const intent = Intent.detect(question);
 
-        for(const program of this.programs){
+        for(const module of this.modules){
 
-            if(question.includes(program)){
+            if(question.includes(module)){
 
-                return await Brain.getInfo(program);
+                switch(intent){
+
+                    case "faq":
+                        return await Brain.getFAQ(module);
+
+                    case "services":
+                        return await Brain.getServices(module);
+
+                    case "healthtips":
+                        return await Brain.getHealthTips(module);
+
+                    case "news":
+                        return await Brain.getNews(module);
+
+                    default:
+                        return await Brain.getInfo(module);
+
+                }
 
             }
 
