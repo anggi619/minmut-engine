@@ -1,7 +1,9 @@
 /**
  * -----------------------------------------
- * MINMUT Brain Engine
- * Version : 1.2
+ * MINMUT Engine
+ * Version : 5.0.0
+ * File    : brain.js
+ * Author  : Anggi Pratama & OpenAI
  * -----------------------------------------
  */
 
@@ -13,7 +15,13 @@ class MinmutBrain {
 
         this.cache = {};
 
+        this.registry = null;
+
     }
+
+    // =====================================
+    // Load JSON
+    // =====================================
 
     async load(path) {
 
@@ -53,14 +61,64 @@ class MinmutBrain {
 
     }
 
-    // ==========================
+    // =====================================
+    // Registry
+    // =====================================
+
+    async loadRegistry() {
+
+        if (this.registry) {
+
+            return this.registry;
+
+        }
+
+        const data = await this.load("index.json");
+
+        if (!data) {
+
+            return null;
+
+        }
+
+        this.registry = data.modules;
+
+        return this.registry;
+
+    }
+
+    async getModules() {
+
+        return await this.loadRegistry();
+
+    }
+
+    async hasModule(id) {
+
+        const modules = await this.loadRegistry();
+
+        return modules.some(m => m.id === id);
+
+    }
+
+    async getModule(id) {
+
+        const modules = await this.loadRegistry();
+
+        return modules.find(m => m.id === id);
+
+    }
+
+    // =====================================
     // Programs
-    // ==========================
+    // =====================================
 
     async getInfo(module) {
 
         return await this.load(
+
             `programs/${module}/info.json`
+
         );
 
     }
@@ -68,7 +126,9 @@ class MinmutBrain {
     async getFAQ(module) {
 
         return await this.load(
+
             `programs/${module}/faq.json`
+
         );
 
     }
@@ -76,7 +136,9 @@ class MinmutBrain {
     async getServices(module) {
 
         return await this.load(
+
             `programs/${module}/services.json`
+
         );
 
     }
@@ -84,7 +146,9 @@ class MinmutBrain {
     async getHealthTips(module) {
 
         return await this.load(
+
             `programs/${module}/healthtips.json`
+
         );
 
     }
@@ -92,7 +156,9 @@ class MinmutBrain {
     async getNews(module) {
 
         return await this.load(
+
             `programs/${module}/news.json`
+
         );
 
     }
@@ -100,7 +166,9 @@ class MinmutBrain {
     async getPosters(module) {
 
         return await this.load(
+
             `programs/${module}/posters.json`
+
         );
 
     }
@@ -108,7 +176,9 @@ class MinmutBrain {
     async getVideos(module) {
 
         return await this.load(
+
             `programs/${module}/videos.json`
+
         );
 
     }
@@ -116,42 +186,50 @@ class MinmutBrain {
     async getAvatar(module) {
 
         return await this.load(
+
             `programs/${module}/avatar.json`
+
         );
 
     }
 
-    // ==========================
-    // System
-    // ==========================
-
-    async getSystem(file) {
-
-        return await this.load(
-            `system/${file}.json`
-        );
-
-    }
-
-    // ==========================
+    // =====================================
     // Profile
-    // ==========================
+    // =====================================
 
     async getProfile(file) {
 
         return await this.load(
+
             `profile/${file}.json`
+
         );
 
     }
 
-    // ==========================
+    // =====================================
+    // System
+    // =====================================
+
+    async getSystem(file) {
+
+        return await this.load(
+
+            `system/${file}.json`
+
+        );
+
+    }
+
+    // =====================================
     // Cache
-    // ==========================
+    // =====================================
 
     clearCache() {
 
         this.cache = {};
+
+        this.registry = null;
 
         Logger.info("Brain Cache Cleared");
 
