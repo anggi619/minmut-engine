@@ -39,6 +39,8 @@ class MinmutCore {
 
         this.avatar.init();
 
+        MinmutEvent.init();
+
         this.behavior.start();
     }
 
