@@ -6,6 +6,8 @@ class MinmutBehaviorManager {
 
         this.enabled = true;
 
+        this.welcomed = false;
+
     }
 
     start(){
@@ -38,6 +40,15 @@ class MinmutBehaviorManager {
 
     async loop(){
 
+        // Welcome hanya sekali
+        if(!this.welcomed){
+
+            await this.welcome();
+
+            this.welcomed = true;
+
+        }
+
         while(this.running){
 
             if(this.enabled){
@@ -52,15 +63,46 @@ class MinmutBehaviorManager {
 
     }
 
+    async welcome(){
+
+        Minmut.play("wave");
+
+        await this.sleep(800);
+
+        Minmut.say("Halo 👋");
+
+        await this.sleep(2000);
+
+        Minmut.say("Saya Minmut.");
+
+        await this.sleep(2000);
+
+        Minmut.say("Asisten Virtual\nPuskesmas Sungai Manau.");
+
+        await this.sleep(2500);
+
+        Minmut.say("Ada yang bisa saya bantu?\nKlik saya kapan saja 😊");
+
+        await this.sleep(5000);
+
+        const bubble = document.getElementById("minmut-bubble");
+
+        if(bubble){
+
+            bubble.classList.remove("show");
+
+        }
+
+    }
+
     async idle(){
 
-        // sementara kosong
-
+        // Akan kita isi pada Engine 3.3
     }
 
     sleep(ms){
 
-        return new Promise(resolve=>setTimeout(resolve,ms));
+        return new Promise(resolve => setTimeout(resolve, ms));
 
     }
 
